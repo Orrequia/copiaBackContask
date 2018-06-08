@@ -23,6 +23,7 @@ public class Company {
 
 	public static final String FIELD_IDCOMPANY = "idCompany";
 	public static final String FIELD_IDEMPLOYEE = "idEmployee";
+	public static final String FIELD_IDCOMPANYTYPE = "idCompanyType";
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -44,4 +45,8 @@ public class Company {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name=FIELD_IDEMPLOYEE)
 	private Employee owner;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name=FIELD_IDCOMPANYTYPE)
+	private CompanyType companyType;
 }
