@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import lombok.Getter;
@@ -21,6 +22,7 @@ import lombok.Setter;
 public class Company {
 
 	public static final String FIELD_IDCOMPANY = "idCompany";
+	public static final String FIELD_IDEMPLOYEE = "idEmployee";
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -38,4 +40,8 @@ public class Company {
 	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
 	@JoinColumn(name=FIELD_IDCOMPANY, referencedColumnName=FIELD_IDCOMPANY)
 	private List<Store> store;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name=FIELD_IDEMPLOYEE)
+	private Employee owner;
 }
