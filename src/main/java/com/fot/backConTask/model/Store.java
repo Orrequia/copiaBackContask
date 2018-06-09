@@ -23,6 +23,7 @@ public class Store {
 
 	private static final String FIELD_IDSTORE = "idStore";
 	private static final String FIELD_IDEMPLOYEE = "IdEmployee";
+	private static final String FIELD_IDPOPULATION = "IdPopulation";
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -46,4 +47,8 @@ public class Store {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name=FIELD_IDEMPLOYEE)
 	private Employee responsible;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name=FIELD_IDPOPULATION)
+	private Population population;
 }
