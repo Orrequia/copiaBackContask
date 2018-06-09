@@ -18,6 +18,8 @@ import lombok.Setter;
 public class ContractLine {
 
 	private static final String FIELD_IDCONTRACTTYPE = "idContractType";
+	private static final String FIELD_IDPENPACK= "idPenpack";
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer idContractLine;
@@ -28,4 +30,8 @@ public class ContractLine {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name=FIELD_IDCONTRACTTYPE)
 	private ContractType contractType;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name=FIELD_IDPENPACK)
+	private Penpack penpack;
 }
