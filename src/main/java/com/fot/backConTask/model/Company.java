@@ -49,4 +49,8 @@ public class Company {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name=FIELD_IDCOMPANYTYPE)
 	private CompanyType companyType;
+	
+	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
+	@JoinColumn(name=FIELD_IDCOMPANY, referencedColumnName=FIELD_IDCOMPANY)
+	private List<Contract> contract;
 }
