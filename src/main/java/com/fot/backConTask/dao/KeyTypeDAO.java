@@ -2,9 +2,9 @@ package com.fot.backConTask.dao;
 
 import org.springframework.stereotype.Repository;
 
-import com.fot.backConTask.model.Penpack;
+import com.fot.backConTask.model.KeyType;
 
 @Repository
-public interface PenpackDAO extends GenericDAO<Penpack> {
+public interface KeyTypeDAO extends GenericDAO<KeyType>{
 
 }

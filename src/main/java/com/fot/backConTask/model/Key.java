@@ -15,7 +15,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Penpack {
+public class Key {
 
 	private static final String FIELD_IDPENPACKTYPE = "idPenpackType";
 	@Id
@@ -27,5 +27,5 @@ public class Penpack {
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name=FIELD_IDPENPACKTYPE)
-	private PenpackType penpackType;
+	private KeyType penpackType;
 }

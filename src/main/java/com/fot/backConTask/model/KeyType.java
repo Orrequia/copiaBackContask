@@ -12,7 +12,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class PenpackType {
+public class KeyType {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
