@@ -17,15 +17,16 @@ import lombok.Setter;
 @Entity
 public class Key {
 
-	private static final String FIELD_IDPENPACKTYPE = "idPenpackType";
+	private static final String FIELD_IDKEYTYPE = "idKeyType";
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer idPenpack;
+	private Integer idKey;
 	
 	@Column(nullable=false)
 	private String license;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name=FIELD_IDPENPACKTYPE)
-	private KeyType penpackType;
+	@JoinColumn(name=FIELD_IDKEYTYPE)
+	private KeyType keyType;
 }
