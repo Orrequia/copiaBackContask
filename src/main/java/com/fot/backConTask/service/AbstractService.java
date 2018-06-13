@@ -2,6 +2,7 @@ package com.fot.backConTask.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -24,7 +25,6 @@ public class AbstractService<T, D extends GenericDAO<T>> implements Service<T, I
 	@Override
 	public void update(T t) {
 		dao.save(t);
-		
 	}
 
 	@Override
@@ -36,13 +36,11 @@ public class AbstractService<T, D extends GenericDAO<T>> implements Service<T, I
 	public List<T> findAll(Pageable p) throws IncorrectParametersException {
 		if(p.getPageNumber() < 0 || p.getPageSize() <= 0 || p.getPageSize() > MAXSIZE)
 			throw new IncorrectParametersException("Los parámetros introducidos contienen valores no permitidos, page mayor o igual a 0 y size entre 1 y " + MAXSIZE + " incluidos");
-		return null;
+		return dao.findAll(p).stream().collect(Collectors.toList());
 	}
 
 	@Override
 	public void delete(T t) {
 		dao.delete(t);
-		
 	}
-
 }
