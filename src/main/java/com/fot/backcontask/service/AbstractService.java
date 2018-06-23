@@ -12,7 +12,7 @@ import com.fot.backcontask.exception.InvalidRequestException;
 
 public class AbstractService<T, D extends GenericDAO<T>> implements Service<T, Integer> {
 
-	private static final Integer MAXSIZE = new Integer(10);
+	private static final Integer MAXSIZE = Integer.valueOf(10);
 	
 	@Autowired
 	D dao;
