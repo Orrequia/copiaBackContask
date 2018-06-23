@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 
 import com.fot.backConTask.dao.GenericDAO;
-import com.fot.backConTask.exception.IncorrectParametersException;
+import com.fot.backConTask.exception.InvalidRequestException;
 
 public class AbstractService<T, D extends GenericDAO<T>> implements Service<T, Integer> {
 
@@ -33,9 +33,9 @@ public class AbstractService<T, D extends GenericDAO<T>> implements Service<T, I
 	}
 
 	@Override
-	public List<T> findAll(Pageable p) throws IncorrectParametersException {
+	public List<T> findAll(Pageable p) throws InvalidRequestException {
 		if(p.getPageNumber() < 0 || p.getPageSize() <= 0 || p.getPageSize() > MAXSIZE)
-			throw new IncorrectParametersException("Los parámetros introducidos contienen valores no permitidos, page mayor o igual a 0 y size entre 1 y " + MAXSIZE + " incluidos");
+			throw new InvalidRequestException("Los parámetros introducidos contienen valores no permitidos, page mayor o igual a 0 y size entre 1 y " + MAXSIZE + " incluidos");
 		return dao.findAll(p).stream().collect(Collectors.toList());
 	}
 

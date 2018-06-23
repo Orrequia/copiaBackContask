@@ -6,13 +6,13 @@ import java.util.Optional;
 
 import org.springframework.data.domain.Pageable;
 
-import com.fot.backConTask.exception.IncorrectParametersException;
+import com.fot.backConTask.exception.InvalidRequestException;
 
 public interface Service<T, ID extends Serializable> {
 
 	T create(T t);
 	void update(T t);
 	Optional<T> findById(ID id);
-	List<T> findAll(Pageable p) throws IncorrectParametersException;
+	List<T> findAll(Pageable p) throws InvalidRequestException;
 	void delete(T t);
 }
