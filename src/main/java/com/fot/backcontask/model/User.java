@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -15,9 +16,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
+@Table(name="\"user\"")
 public class User {
 	
 	private static final String FIELD_IDROLE = "idRole";
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer idUser;
