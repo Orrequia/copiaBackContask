@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fot.backcontask.dao.UserDAO;
-import com.fot.backcontask.dto.LoginDTO;
+import com.fot.backcontask.dto.auth.LoginDTO;
 import com.fot.backcontask.exception.InvalidUserException;
 import com.fot.backcontask.model.User;
 import com.fot.backcontask.service.AbstractService;

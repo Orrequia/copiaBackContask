@@ -2,7 +2,7 @@ package com.fot.backcontask.component.mapper.token;
 
 import org.springframework.stereotype.Component;
 
-import com.fot.backcontask.dto.TokenDTO;
+import com.fot.backcontask.dto.auth.TokenDTO;
 
 @Component
 public class TokenMapperImpl implements TokenMapper {

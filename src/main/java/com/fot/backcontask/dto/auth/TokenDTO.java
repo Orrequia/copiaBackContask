@@ -1,4 +1,4 @@
-package com.fot.backcontask.dto;
+package com.fot.backcontask.dto.auth;
 
 import lombok.Data;
 

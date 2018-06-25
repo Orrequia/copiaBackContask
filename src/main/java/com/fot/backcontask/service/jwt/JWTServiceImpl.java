@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.fot.backcontask.component.mapper.token.TokenMapper;
-import com.fot.backcontask.dto.LoginDTO;
-import com.fot.backcontask.dto.TokenDTO;
-import com.fot.backcontask.dto.ValidTokenDTO;
+import com.fot.backcontask.dto.auth.LoginDTO;
+import com.fot.backcontask.dto.auth.TokenDTO;
+import com.fot.backcontask.dto.auth.ValidTokenDTO;
 import com.fot.backcontask.exception.InvalidUserException;
 import com.fot.backcontask.model.User;
 import com.fot.backcontask.service.localdatetime.LocalDateTimeService;

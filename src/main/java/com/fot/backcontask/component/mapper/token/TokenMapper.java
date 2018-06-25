@@ -1,6 +1,6 @@
 package com.fot.backcontask.component.mapper.token;
 
-import com.fot.backcontask.dto.TokenDTO;
+import com.fot.backcontask.dto.auth.TokenDTO;
 
 public interface TokenMapper {
 

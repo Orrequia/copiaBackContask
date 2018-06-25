@@ -1,8 +1,8 @@
 package com.fot.backcontask.service.jwt;
 
-import com.fot.backcontask.dto.LoginDTO;
-import com.fot.backcontask.dto.TokenDTO;
-import com.fot.backcontask.dto.ValidTokenDTO;
+import com.fot.backcontask.dto.auth.LoginDTO;
+import com.fot.backcontask.dto.auth.TokenDTO;
+import com.fot.backcontask.dto.auth.ValidTokenDTO;
 import com.fot.backcontask.exception.InvalidUserException;
 
 public interface JWTService {
