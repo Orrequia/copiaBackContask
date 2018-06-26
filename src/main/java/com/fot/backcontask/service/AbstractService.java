@@ -10,7 +10,7 @@ import org.springframework.data.domain.Pageable;
 import com.fot.backcontask.dao.GenericDAO;
 import com.fot.backcontask.exception.InvalidRequestException;
 
-public class AbstractService<T, D extends GenericDAO<T>> implements Service<T, Integer> {
+public class AbstractService<T, D extends GenericDAO<T>> implements Service<T, Long> {
 
 	private static final Integer MAXSIZE = Integer.valueOf(10);
 	
@@ -28,7 +28,7 @@ public class AbstractService<T, D extends GenericDAO<T>> implements Service<T, I
 	}
 
 	@Override
-	public Optional<T> findById(Integer id) {
+	public Optional<T> findById(Long id) {
 		return dao.findById(id);
 	}
 
