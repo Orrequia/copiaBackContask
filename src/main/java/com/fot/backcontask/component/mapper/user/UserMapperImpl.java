@@ -28,11 +28,11 @@ public class UserMapperImpl extends AbstractMapper<User, UserDTO> implements Use
 	
 	@Override
 	public User dtoToModel(UserPostDTO dto) throws NotFoundException {
-		Role role = integerToRole(dto.getIdRole());
+		Role role = longToRole(dto.getIdRole());
 		return map(dto, role);
 	}
 	
-	private Role integerToRole(Integer idRole) throws NotFoundException {
+	private Role longToRole(Long idRole) throws NotFoundException {
 			return roleService.findById(idRole)
 					.orElseThrow(() -> new NotFoundException("El rol no existe"));	
 	}
