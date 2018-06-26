@@ -8,7 +8,9 @@ import com.fot.backcontask.service.Service;
 
 public interface UserService extends Service<User, Long> {
 	
-	public User findUser(LoginDTO login) throws InvalidUserException;
-	
 	User getAndCheck(Long idUser) throws NotFoundException;
+	boolean isEqual(User u1, User u2);
+	void setValues(User to, User from);
+	
+	public User findUser(LoginDTO login) throws InvalidUserException;
 }
