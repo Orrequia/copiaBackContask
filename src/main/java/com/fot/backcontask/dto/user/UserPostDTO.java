@@ -9,5 +9,5 @@ public class UserPostDTO extends UserDTO {
 
 	private String username;
 	private String password;
-	private Integer idRole;
+	private Long idRole;
 }
