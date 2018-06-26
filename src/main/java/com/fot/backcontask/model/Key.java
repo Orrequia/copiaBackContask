@@ -21,7 +21,7 @@ public class Key {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer idKey;
+	private Long idKey;
 	
 	@Column(nullable=false)
 	private String license;

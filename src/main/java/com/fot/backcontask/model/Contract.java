@@ -27,7 +27,7 @@ public class Contract {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer idContract;
+	private Long idContract;
 	
 	@Temporal(TemporalType.DATE)
 	private Date startDate;

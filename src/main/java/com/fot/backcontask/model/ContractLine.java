@@ -22,7 +22,7 @@ public class ContractLine {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer idContractLine;
+	private Long idContractLine;
 	
 	@Column
 	private Float price;

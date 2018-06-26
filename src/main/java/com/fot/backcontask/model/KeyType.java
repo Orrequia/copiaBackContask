@@ -16,7 +16,7 @@ public class KeyType {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer idKeyType;
+	private Long idKeyType;
 	
 	@Column(nullable=false, unique=true)
 	private String name;

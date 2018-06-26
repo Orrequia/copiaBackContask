@@ -16,7 +16,7 @@ public class Population {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer idPopulation;
+	private Long idPopulation;
 	
 	@Column(nullable=false)
 	private String name;

@@ -23,7 +23,7 @@ public class Province {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer idProvince;
+	private Long idProvince;
 	
 	@Column(nullable=false)
 	private String name;
