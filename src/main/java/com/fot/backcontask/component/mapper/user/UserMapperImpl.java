@@ -1,6 +1,7 @@
 package com.fot.backcontask.component.mapper.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.fot.backcontask.component.mapper.AbstractMapper;
 import com.fot.backcontask.dto.user.UserDTO;
@@ -10,6 +11,7 @@ import com.fot.backcontask.model.Role;
 import com.fot.backcontask.model.User;
 import com.fot.backcontask.service.role.RoleService;
 
+@Component
 public class UserMapperImpl extends AbstractMapper<User, UserDTO> implements UserMapper {
 
 	@Autowired
