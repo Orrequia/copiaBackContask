@@ -5,6 +5,7 @@ import java.time.ZoneId;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import com.fot.backcontask.component.mapper.token.TokenMapper;
 import com.fot.backcontask.dto.auth.LoginDTO;
@@ -19,6 +20,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
+@Service
 public class JWTServiceImpl implements JWTService {
 
 	private static final ZoneId DEFAULT_ZONEID = ZoneId.systemDefault();

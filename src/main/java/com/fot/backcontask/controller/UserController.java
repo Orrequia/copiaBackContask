@@ -2,6 +2,8 @@ package com.fot.backcontask.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,12 +17,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fot.backcontask.component.mapper.user.UserMapper;
+import com.fot.backcontask.dto.ApiErrorDTO;
 import com.fot.backcontask.dto.user.UserDTO;
 import com.fot.backcontask.dto.user.UserPostDTO;
 import com.fot.backcontask.exception.InvalidRequestException;
 import com.fot.backcontask.exception.NotFoundException;
 import com.fot.backcontask.model.User;
 import com.fot.backcontask.service.user.UserService;
+
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 @RestController
 @RequestMapping(value= "/user")
@@ -33,6 +40,10 @@ public class UserController {
 	UserMapper userMapper;
 	
 	@GetMapping
+	@ApiOperation(notes="Devuelve una lista de usuarios paginado, cada página tendrá un tamaño máximo de 10", tags= { "User" }, value="All user")
+	@ApiResponses({ @ApiResponse(code = 200, response= UserDTO.class, message="All users"),
+					@ApiResponse(code = 401, response= ApiErrorDTO.class, message="Invalid Request")
+	})
 	public List<UserDTO> findAll(@RequestParam(defaultValue = "0", required= false ) Integer page, 
 							 @RequestParam(defaultValue = "10", required= false ) Integer size) throws InvalidRequestException {
 		final List<User> users = userService.findAll(PageRequest.of(page, size));
@@ -46,7 +57,7 @@ public class UserController {
 	}
 	
 	@PostMapping
-	public UserDTO create(@RequestBody UserPostDTO dto) throws InvalidRequestException, NotFoundException {
+	public UserDTO create(HttpServletRequest request, @RequestBody UserPostDTO dto) throws InvalidRequestException, NotFoundException {
 		if(dto.getIdUser() != null) 
 			throw new InvalidRequestException("El idUser no se puede recibir en el body");
 		final User user = userMapper.dtoToModel(dto);

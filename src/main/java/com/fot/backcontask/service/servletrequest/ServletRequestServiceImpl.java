@@ -4,8 +4,11 @@ import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.stereotype.Service;
+
 import com.fot.backcontask.exception.InvalidRequestException;
 
+@Service
 public class ServletRequestServiceImpl implements ServletRequestService {
 
 	private static final String HEADER_NAME = "Authorization";
