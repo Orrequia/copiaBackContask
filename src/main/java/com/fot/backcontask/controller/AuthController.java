@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,6 +45,7 @@ public class AuthController {
 	@ApiOperation(notes = "Comprueba la validez de un token", tags = { "Login" }, value = "Validate token")
 	@ApiResponses({ @ApiResponse(code = 200, response = ValidTokenDTO.class, message = ""),
 			@ApiResponse(code = 401, response = ApiErrorDTO.class, message = "Bad credentials") })
+	@GetMapping("/verify")
 	public ResponseEntity<ValidTokenDTO> validate(HttpServletRequest request) throws InvalidRequestException {
 		final String header = requestService.extractToken(request);
 		return ResponseEntity.ok(jwtService.validateToken(header));
