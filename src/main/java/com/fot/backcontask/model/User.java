@@ -16,7 +16,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name="\"user\"")
+@Table(name="t_user")
 public class User {
 	
 	private static final String FIELD_IDROLE = "idRole";
