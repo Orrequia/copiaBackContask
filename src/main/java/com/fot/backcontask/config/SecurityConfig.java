@@ -24,7 +24,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-			.csrf().disable()
+			.cors().and()
+			.csrf().and()
 			.authorizeRequests()
 				.antMatchers("/", "/user", "/auth/**").permitAll()
 				.anyRequest().authenticated();
@@ -41,5 +42,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					.build();
 		
 		return new InMemoryUserDetailsManager(user);
-	}*/
+	}
+	
+	* // Filter for the api/login requests
+	*    .addFilterBefore(new LoginFilter("/login",
+	*    authenticationManager()),
+	*          UsernamePasswordAuthenticationFilter.class)
+	* // Filter for other requests to check JWT in header 
+	*    .addFilterBefore(new AuthenticationFilter(),
+	*          UsernamePasswordAuthenticationFilter.class); 
+	*
+	*/
 }
