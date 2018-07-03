@@ -44,6 +44,6 @@ public class User {
 	private Boolean tokenExpired;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name=FIELD_IDROLE)
+	@JoinColumn(name=FIELD_IDROLE, nullable=false)
 	private Role role;
 }
