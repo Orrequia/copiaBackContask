@@ -43,7 +43,7 @@ public class UserServiceImpl extends AbstractService<User, UserDAO> implements U
 	
 	@Override
 	public User findUser(LoginDTO login) throws InvalidUserException {
-		return userDAO.findOneByUsernameAndPassword(login.getUsername(), login.getPassword())
+		return userDAO.findOneByUsername(login.getUsername())
 				.orElseThrow(InvalidUserException::new);
 	}
 }

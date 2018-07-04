@@ -5,6 +5,8 @@ import java.time.ZoneId;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.fot.backcontask.component.mapper.token.TokenMapper;
@@ -40,9 +42,14 @@ public class JWTServiceImpl implements JWTService {
 	@Autowired
 	TokenMapper tokenMapper;
 	
+	@Autowired
+	PasswordEncoder passwordEncoder;
+	
 	@Override
 	public TokenDTO loginUser(LoginDTO login) throws InvalidUserException {
 		final User user = userService.findUser(login);
+		if(passwordEncoder.matches(login.getPassword(), user.getPassword()))
+			throw new InvalidUserException();
 		final String token = generateToken(user);
 		return tokenMapper.map(token);
 	}
