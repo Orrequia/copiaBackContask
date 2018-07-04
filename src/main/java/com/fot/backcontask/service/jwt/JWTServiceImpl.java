@@ -48,10 +48,10 @@ public class JWTServiceImpl implements JWTService {
 	@Override
 	public TokenDTO loginUser(LoginDTO login) throws InvalidUserException {
 		final User user = userService.findUser(login);
-		if(passwordEncoder.matches(login.getPassword(), user.getPassword()))
+		if(!passwordEncoder.matches(login.getPassword(), user.getPassword()))
 			throw new InvalidUserException();
 		final String token = generateToken(user);
-		return tokenMapper.map(token);
+		return tokenMapper.map("Bearer " + token);
 	}
 	
 	private String generateToken(final User u) {
