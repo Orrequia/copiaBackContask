@@ -1,18 +1,23 @@
 package com.fot.backcontask.service.user;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.fot.backcontask.dao.UserDAO;
-import com.fot.backcontask.dto.auth.LoginDTO;
-import com.fot.backcontask.exception.InvalidUserException;
 import com.fot.backcontask.exception.NotFoundException;
 import com.fot.backcontask.model.User;
 import com.fot.backcontask.service.AbstractService;
 
 @Service
-public class UserServiceImpl extends AbstractService<User, UserDAO> implements UserService{
+public class UserServiceImpl extends AbstractService<User, UserDAO> implements UserService, UserDetailsService {
 
 	@Autowired
 	UserDAO userDAO;
@@ -42,8 +47,12 @@ public class UserServiceImpl extends AbstractService<User, UserDAO> implements U
 	}
 	
 	@Override
-	public User findUser(LoginDTO login) throws InvalidUserException {
-		return userDAO.findOneByUsername(login.getUsername())
-				.orElseThrow(InvalidUserException::new);
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		User user = userDAO.findOneByUsername(username).orElseThrow(() -> new UsernameNotFoundException("El usuario o contraseña son incorrectos"));
+		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getAuthority());
+	}
+	
+	private List<SimpleGrantedAuthority> getAuthority() {
+		return Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));
 	}
 }

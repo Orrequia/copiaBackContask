@@ -18,62 +18,62 @@ import com.fot.backcontask.model.User;
 import com.fot.backcontask.service.localdatetime.LocalDateTimeService;
 import com.fot.backcontask.service.user.UserService;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+//import io.jsonwebtoken.Claims;
+//import io.jsonwebtoken.Jwts;
+//import io.jsonwebtoken.SignatureAlgorithm;
 
-@Service
-public class JWTServiceImpl implements JWTService {
+//@Service
+//public class JWTServiceImpl implements JWTService {
+//
+//	private static final ZoneId DEFAULT_ZONEID = ZoneId.systemDefault();
+//	
+//	@Value("${jwt.secret}")
+//	private String secret;
+//	
+//	@Value("${jwt.expiration}")
+//	private Integer expiration;
+//	
+//	@Autowired
+//	UserService userService;
+//	
+//	@Autowired
+//	LocalDateTimeService dateService;
+//	
+//	@Autowired
+//	TokenMapper tokenMapper;
+//	
+//	@Autowired
+//	PasswordEncoder passwordEncoder;
+//	
+//	@Override
+//	public TokenDTO loginUser(LoginDTO login) throws InvalidUserException {
+//		final User user = userService.findUser(login);
+//		if(!passwordEncoder.matches(login.getPassword(), user.getPassword()))
+//			throw new InvalidUserException();
+//		final String token = generateToken(user);
+//		return tokenMapper.map("Bearer " + token);
+//	}
+	
+//	private String generateToken(final User u) {
+//		final LocalDateTime now = dateService.now();
+//		return Jwts.builder().claim(Claims.SUBJECT, u.getUsername())
+//							.claim(Claims.ISSUED_AT, toEpoch(now))
+//							.claim(Claims.EXPIRATION, toEpoch(dateService.plusSeconds(now, expiration)))
+//							.signWith(SignatureAlgorithm.HS256, secret)
+//							.compact();
+//	}
+	
+//	private Long toEpoch(LocalDateTime date) {
+//		return date.atZone(DEFAULT_ZONEID).toEpochSecond();
+//	}
 
-	private static final ZoneId DEFAULT_ZONEID = ZoneId.systemDefault();
-	
-	@Value("${jwt.secret}")
-	private String secret;
-	
-	@Value("${jwt.expiration}")
-	private Integer expiration;
-	
-	@Autowired
-	UserService userService;
-	
-	@Autowired
-	LocalDateTimeService dateService;
-	
-	@Autowired
-	TokenMapper tokenMapper;
-	
-	@Autowired
-	PasswordEncoder passwordEncoder;
-	
-	@Override
-	public TokenDTO loginUser(LoginDTO login) throws InvalidUserException {
-		final User user = userService.findUser(login);
-		if(!passwordEncoder.matches(login.getPassword(), user.getPassword()))
-			throw new InvalidUserException();
-		final String token = generateToken(user);
-		return tokenMapper.map("Bearer " + token);
-	}
-	
-	private String generateToken(final User u) {
-		final LocalDateTime now = dateService.now();
-		return Jwts.builder().claim(Claims.SUBJECT, u.getUsername())
-							.claim(Claims.ISSUED_AT, toEpoch(now))
-							.claim(Claims.EXPIRATION, toEpoch(dateService.plusSeconds(now, expiration)))
-							.signWith(SignatureAlgorithm.HS256, secret)
-							.compact();
-	}
-	
-	private Long toEpoch(LocalDateTime date) {
-		return date.atZone(DEFAULT_ZONEID).toEpochSecond();
-	}
-
-	@Override
-	public ValidTokenDTO validateToken(String token) {
-		final Claims claims = extractClaims(token);
-		return new ValidTokenDTO(claims.getSubject());
-	}
-
-	private Claims extractClaims(String token) {
-		return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
-	}
-}
+//	@Override
+//	public ValidTokenDTO validateToken(String token) {
+//		final Claims claims = extractClaims(token);
+//		return new ValidTokenDTO(claims.getSubject());
+//	}
+//
+//	private Claims extractClaims(String token) {
+//		return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
+//	}
+//}
