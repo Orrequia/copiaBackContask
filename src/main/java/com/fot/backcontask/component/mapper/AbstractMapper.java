@@ -6,37 +6,35 @@ import java.util.stream.Collectors;
 
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import com.fot.backcontask.exception.NotFoundException;
 
-@Component
-public abstract class AbstractMapper<M, D> implements Mapper<M, D> {
+public abstract class AbstractMapper<T, E> implements Mapper<T, E> {
 	
 	@Autowired
 	public DozerBeanMapper dozer;
 	
 	@Override
-	public M dtoToModel(D dto) throws NotFoundException {
+	public T dtoToModel(E dto) throws NotFoundException {
 		return dozer.map(dto, modelClazz());
 	}
 
 	@Override
-	public D modelToDto(M model) {
+	public E modelToDto(T model) {
 		return dozer.map(model, dtoClazz());
 	}
 
 	@Override
-	public List<M> dtoToModel(List<D> dtos) throws NotFoundException {
-		List<M> models = new ArrayList<>();
+	public List<T> dtoToModel(List<E> dtos) throws NotFoundException {
+		List<T> models = new ArrayList<>();
 		if(dtos != null) 
-			for(D dto : dtos)
+			for(E dto : dtos)
 				models.add(dtoToModel(dto));
 		return models;
 	}
 
 	@Override
-	public List<D> modelToDto(List<M> models) {
+	public List<E> modelToDto(List<T> models) {
 		return models.stream().map(this::modelToDto).collect(Collectors.toList());
-}
+	}
 }
