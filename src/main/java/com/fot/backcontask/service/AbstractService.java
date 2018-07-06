@@ -10,7 +10,7 @@ import org.springframework.data.domain.Pageable;
 import com.fot.backcontask.dao.GenericDAO;
 import com.fot.backcontask.exception.InvalidRequestException;
 
-public class AbstractService<T, D extends GenericDAO<T>> implements Service<T, Long> {
+public abstract class AbstractService<T, D extends GenericDAO<T>> implements Service<T, Long> {
 
 	private static final Integer MAXSIZE = Integer.valueOf(10);
 	
