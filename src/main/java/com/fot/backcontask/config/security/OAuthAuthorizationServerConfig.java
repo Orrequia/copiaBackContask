@@ -23,6 +23,7 @@ public class OAuthAuthorizationServerConfig extends AuthorizationServerConfigure
 	static final String AUTHORIZATION_CODE = "authorization_code";
 	static final String REFRESH_TOKEN = "refresh_token";
 	static final String IMPLICIT = "implicit";
+	static final String SCOPE_AUTH = "auth";
 	static final String SCOPE_READ = "read";
 	static final String SCOPE_WRITE = "write";
 	static final String TRUST = "trust";
@@ -65,7 +66,7 @@ public class OAuthAuthorizationServerConfig extends AuthorizationServerConfigure
 			.withClient(CLIENT_ID)
 			.secret(passwordEncoder().encode(CLIENT_SECRET))
 			.authorizedGrantTypes(AUTHORIZATION_CODE, REFRESH_TOKEN, IMPLICIT)
-			.scopes(SCOPE_READ, SCOPE_WRITE, TRUST)
+			.scopes(SCOPE_AUTH, SCOPE_READ, SCOPE_WRITE, TRUST)
 			.accessTokenValiditySeconds(ACCESS_TOKEN_VALIDITY_SECONDS)
 			.refreshTokenValiditySeconds(FREFRESH_TOKEN_VALIDITY_SECONDS);
 	}
