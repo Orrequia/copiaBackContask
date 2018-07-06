@@ -43,11 +43,11 @@ public class Company {
 	private List<Store> store;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name=FIELD_IDEMPLOYEE)
+	@JoinColumn(name=FIELD_IDEMPLOYEE, nullable=false)
 	private Employee owner;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name=FIELD_IDCOMPANYTYPE)
+	@JoinColumn(name=FIELD_IDCOMPANYTYPE, nullable=false)
 	private CompanyType companyType;
 	
 	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
