@@ -4,12 +4,12 @@ import java.util.List;
 
 import com.fot.backcontask.exception.NotFoundException;
 
-public interface Mapper<M, D> {
+public interface Mapper<T, E> {
 
-	M dtoToModel(D dto) throws NotFoundException;
-	D modelToDto(M model);
-	List<M> dtoToModel(List<D> dtos) throws NotFoundException;
-	List<D> modelToDto(List<M> models);
-	Class<? extends D> dtoClazz();
-	Class<? extends M> modelClazz();
+	T dtoToModel(E dto) throws NotFoundException;
+	E modelToDto(T model);
+	List<T> dtoToModel(List<E> dtos) throws NotFoundException;
+	List<E> modelToDto(List<T> models);
+	Class<? extends E> dtoClazz();
+	Class<? extends T> modelClazz();
 }
