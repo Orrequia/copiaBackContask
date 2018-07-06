@@ -66,8 +66,10 @@ public class OAuthAuthorizationServerConfig extends AuthorizationServerConfigure
 			.withClient(CLIENT_ID)
 			.secret(passwordEncoder().encode(CLIENT_SECRET))
 			.authorizedGrantTypes(AUTHORIZATION_CODE, REFRESH_TOKEN, IMPLICIT)
-			.scopes(SCOPE_AUTH, SCOPE_READ, SCOPE_WRITE, TRUST)
+			.authorities("ROLE_ADMIN")
+			.scopes(SCOPE_READ, SCOPE_WRITE, TRUST)
 			.accessTokenValiditySeconds(ACCESS_TOKEN_VALIDITY_SECONDS)
-			.refreshTokenValiditySeconds(FREFRESH_TOKEN_VALIDITY_SECONDS);
+			.refreshTokenValiditySeconds(FREFRESH_TOKEN_VALIDITY_SECONDS)
+			.autoApprove(true);
 	}
 }
