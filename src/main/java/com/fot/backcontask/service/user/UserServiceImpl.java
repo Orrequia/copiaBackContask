@@ -16,7 +16,7 @@ import com.fot.backcontask.exception.NotFoundException;
 import com.fot.backcontask.model.User;
 import com.fot.backcontask.service.AbstractService;
 
-@Service
+@Service(value = "userService")
 public class UserServiceImpl extends AbstractService<User, UserDAO> implements UserService, UserDetailsService {
 
 	@Autowired
