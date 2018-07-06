@@ -27,7 +27,7 @@ public class OAuthResourceServerConfig extends ResourceServerConfigurerAdapter {
 		http
 			.anonymous().disable()
 			.authorizeRequests()
-			.antMatchers("/company/**").access("hasRole('ADMIN')").and()
+				.antMatchers("/company/**").access("hasRole('ADMIN')").and()
 			.exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
 	}
 }
