@@ -1,11 +1,7 @@
 package com.fot.backcontask.service.user;
 
-import java.util.Arrays;
-import java.util.List;
-
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -48,11 +44,11 @@ public class UserServiceImpl extends AbstractService<User, UserDAO> implements U
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = userDAO.findOneByUsername(username).orElseThrow(() -> new UsernameNotFoundException("El usuario o contraseña son incorrectos"));
-		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getAuthority());
+		UserDetails user = userDAO.findOneByUsername(username).orElseThrow(() -> new UsernameNotFoundException("El usuario o contraseña son incorrectos"));
+		return user;//rg.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getAuthority());
 	}
 	
-	private List<SimpleGrantedAuthority> getAuthority() {
+	/*private List<SimpleGrantedAuthority> getAuthority() {
 		return Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));
-	}
+	}*/
 }
