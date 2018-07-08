@@ -1,5 +1,7 @@
 package com.fot.backcontask.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +14,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Privilege {
+public class Privilege implements Serializable {
+
+	private static final long serialVersionUID = 87657865871L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

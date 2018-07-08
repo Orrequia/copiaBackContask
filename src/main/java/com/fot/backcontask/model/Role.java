@@ -1,5 +1,6 @@
 package com.fot.backcontask.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -18,8 +19,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Role {
+public class Role implements Serializable {
 
+	private static final long serialVersionUID = 1587687345L;
+	
 	private static final String FIELD_IDROLE = "idRole";
 	private static final String FIELD_IDPRIVILEGE = "idPrivilege";
 	

@@ -1,5 +1,6 @@
 package com.fot.backcontask.service.companytype;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import com.fot.backcontask.dao.CompanyTypeDAO;
@@ -12,20 +13,17 @@ public class CompanyTypeServiceImpl extends AbstractService<CompanyType, Company
 
 	@Override
 	public CompanyType getAndCheck(Long id) throws NotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		return findById(id).orElseThrow(() -> new NotFoundException("El tipo de compañía no existe"));
 	}
 
 	@Override
-	public boolean isEqual(CompanyType u1, CompanyType u2) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isEqual(CompanyType ct1, CompanyType ct2) {
+		return StringUtils.equals(ct1.getName(), ct2.getName());
 	}
 
 	@Override
 	public void setValues(CompanyType to, CompanyType from) {
-		// TODO Auto-generated method stub
-		
+		to.setName(from.getName());
 	}
 
 }

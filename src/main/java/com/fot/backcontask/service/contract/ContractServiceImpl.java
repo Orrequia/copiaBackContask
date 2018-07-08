@@ -1,5 +1,6 @@
 package com.fot.backcontask.service.contract;
 
+import org.apache.commons.codec.binary.StringUtils;
 import org.springframework.stereotype.Service;
 
 import com.fot.backcontask.dao.ContractDAO;
@@ -12,14 +13,13 @@ public class ContractServiceImpl extends AbstractService<Contract, ContractDAO> 
 
 	@Override
 	public Contract getAndCheck(Long id) throws NotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		return findById(id).orElseThrow(() -> new NotFoundException("El contrato no existe"));
 	}
 
 	@Override
-	public boolean isEqual(Contract u1, Contract u2) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isEqual(Contract c1, Contract c2) {
+		return DateUtils..equals(c1.getStartDate(), c2.getStartDate()) &&
+				StringUtils.equals(cs1, cs2);
 	}
 
 	@Override

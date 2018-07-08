@@ -21,7 +21,7 @@ import com.fot.backcontask.exception.InvalidRequestException;
 import com.fot.backcontask.exception.NotFoundException;
 import com.fot.backcontask.service.Service;
 
-public abstract class AbstractController<T, E, M> implements Controller<E> {
+public abstract class AbstractController<T, E> implements Controller<E> {
 
 	@Autowired
 	Service<T, Long> service;
@@ -43,7 +43,7 @@ public abstract class AbstractController<T, E, M> implements Controller<E> {
 	}
 	
 	@PostMapping
-	public E create(HttpServletRequest request, @RequestBody E dto) throws InvalidRequestException, NotFoundException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	public E create(HttpServletRequest request, @RequestBody E dto) throws InvalidRequestException, NotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
 		Method method = clazz().getMethod("getId" + clazz());
 		if(method.invoke(dto) != null)
 			throw new InvalidRequestException("El idUser no se puede recibir en el body");
@@ -53,7 +53,7 @@ public abstract class AbstractController<T, E, M> implements Controller<E> {
 	}
 	
 	@PutMapping("/{idUser}")
-	public void update(@PathVariable("idUser") Long id, @RequestBody E dto) throws InvalidRequestException, NotFoundException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+	public void update(@PathVariable("idUser") Long id, @RequestBody E dto) throws InvalidRequestException, NotFoundException, IllegalAccessException, InvocationTargetException, NoSuchMethodException {
 		Method method = clazz().getMethod("getId" + clazz());
 		if(method.invoke(dto) != null) 
 			throw new InvalidRequestException("El idUser no se puede recibir en el body");
