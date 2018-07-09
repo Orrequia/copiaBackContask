@@ -3,6 +3,7 @@ package com.fot.backcontask.config.security;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -10,6 +11,7 @@ import org.springframework.security.oauth2.config.annotation.configurers.ClientD
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
+import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
@@ -20,6 +22,7 @@ public class OAuthAuthorizationServerConfig extends AuthorizationServerConfigure
 	
 	static final String CLIENT_ID = "client_id";
 	static final String CLIENT_SECRET = "client_secret";
+	static final String PAS_GRANT = "password";
 	static final String AUTHORIZATION_CODE = "authorization_code";
 	static final String REFRESH_TOKEN = "refresh_token";
 	static final String IMPLICIT = "implicit";
@@ -51,6 +54,15 @@ public class OAuthAuthorizationServerConfig extends AuthorizationServerConfigure
 		converter.setSigningKey(secret);
 		return converter;
 	}
+	
+	@Bean
+	@Primary
+	public DefaultTokenServices tokenServices() {
+        DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
+        defaultTokenServices.setTokenStore(tokenStore());
+        defaultTokenServices.setSupportRefreshToken(true);
+        return defaultTokenServices;
+    }
 
 	@Override
 	public void configure(final AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
@@ -65,7 +77,7 @@ public class OAuthAuthorizationServerConfig extends AuthorizationServerConfigure
 			.inMemory()
 			.withClient(CLIENT_ID)
 			.secret(passwordEncoder().encode(CLIENT_SECRET))
-			.authorizedGrantTypes(AUTHORIZATION_CODE, REFRESH_TOKEN, IMPLICIT)
+			.authorizedGrantTypes(PAS_GRANT, AUTHORIZATION_CODE, REFRESH_TOKEN, IMPLICIT)
 			.authorities("ROLE_ADMIN")
 			.scopes(SCOPE_READ, SCOPE_WRITE, TRUST)
 			.accessTokenValiditySeconds(ACCESS_TOKEN_VALIDITY_SECONDS)
