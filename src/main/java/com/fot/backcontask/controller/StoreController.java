@@ -10,9 +10,4 @@ import com.fot.backcontask.model.Store;
 @RequestMapping("/store")
 public class StoreController extends AbstractController<Store, StoreDTO>{
 
-	@Override
-	public Class<StoreDTO> clazz() {
-		return StoreDTO.class;
-	}
-
 }
