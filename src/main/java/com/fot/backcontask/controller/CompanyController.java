@@ -10,9 +10,4 @@ import com.fot.backcontask.model.Company;
 @RequestMapping("/company")
 public class CompanyController extends AbstractController<Company, CompanyDTO> {
 
-	@Override
-	public Class<CompanyDTO> clazz() {
-		return CompanyDTO.class;
-	}
-
 }

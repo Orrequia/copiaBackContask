@@ -9,9 +9,5 @@ import com.fot.backcontask.model.ContractType;
 @RestController
 @RequestMapping("/contractType")
 public class ContractTypeController extends AbstractController<ContractType, ContractTypeDTO> {
-
-	@Override
-	public Class<ContractTypeDTO> clazz() {
-		return ContractTypeDTO.class;
-	}
+	
 }

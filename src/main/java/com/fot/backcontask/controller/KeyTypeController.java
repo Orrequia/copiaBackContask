@@ -5,8 +5,4 @@ import com.fot.backcontask.model.KeyType;
 
 public class KeyTypeController extends AbstractController<KeyType, KeyTypeDTO>{
 
-	@Override
-	public Class<KeyTypeDTO> clazz() {
-		return KeyTypeDTO.class;
-	}
 }
