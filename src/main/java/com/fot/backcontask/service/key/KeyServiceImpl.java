@@ -1,5 +1,6 @@
 package com.fot.backcontask.service.key;
 
+import org.apache.commons.codec.binary.StringUtils;
 import org.springframework.stereotype.Service;
 
 import com.fot.backcontask.dao.KeyDAO;
@@ -12,20 +13,18 @@ public class KeyServiceImpl extends AbstractService<Key, KeyDAO> implements KeyS
 
 	@Override
 	public Key getAndCheck(Long id) throws NotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		return findById(id).orElseThrow(() -> new NotFoundException("La mochila no exite"));
 	}
 
 	@Override
-	public boolean isEqual(Key u1, Key u2) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isEqual(Key k1, Key k2) {
+		return StringUtils.equals(k1.getLicense(), k2.getLicense()) &&
+				k1.getKeyType().equals(k2.getKeyType());
 	}
 
 	@Override
 	public void setValues(Key to, Key from) {
-		// TODO Auto-generated method stub
-		
+		to.setLicense(from.getLicense());
+		to.setKeyType(from.getKeyType());
 	}
-
 }

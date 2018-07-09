@@ -1,5 +1,6 @@
 package com.fot.backcontask.service.keytype;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import com.fot.backcontask.dao.KeyTypeDAO;
@@ -12,20 +13,16 @@ public class KeyTypeServiceImpl extends AbstractService<KeyType, KeyTypeDAO> imp
 
 	@Override
 	public KeyType getAndCheck(Long id) throws NotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		return findById(id).orElseThrow(() -> new NotFoundException("El tipo de mochila no existe"));
 	}
 
 	@Override
-	public boolean isEqual(KeyType u1, KeyType u2) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isEqual(KeyType kt1, KeyType kt2) {
+		return StringUtils.equals(kt1.getName(), kt2.getName());
 	}
 
 	@Override
 	public void setValues(KeyType to, KeyType from) {
-		// TODO Auto-generated method stub
-		
+		to.setName(from.getName());
 	}
-
 }

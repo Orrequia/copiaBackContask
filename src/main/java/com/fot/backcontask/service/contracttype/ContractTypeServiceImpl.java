@@ -1,5 +1,6 @@
 package com.fot.backcontask.service.contracttype;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import com.fot.backcontask.dao.ContractTypeDAO;
@@ -12,20 +13,16 @@ public class ContractTypeServiceImpl extends AbstractService<ContractType, Contr
 
 	@Override
 	public ContractType getAndCheck(Long id) throws NotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		return findById(id).orElseThrow(() -> new NotFoundException("El tipo de contrato no existe"));
 	}
 
 	@Override
-	public boolean isEqual(ContractType u1, ContractType u2) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isEqual(ContractType ct1, ContractType ct2) {
+		return StringUtils.equals(ct1.getName(), ct2.getName());
 	}
 
 	@Override
 	public void setValues(ContractType to, ContractType from) {
-		// TODO Auto-generated method stub
-		
+		to.setName(from.getName());
 	}
-
 }
