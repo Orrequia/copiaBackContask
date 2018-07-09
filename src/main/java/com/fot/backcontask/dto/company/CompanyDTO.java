@@ -10,12 +10,12 @@ public class CompanyDTO implements Serializable {
 	
 	private static final long serialVersionUID = -698748354L;
 	
-	Long idCompany;
-	String nif;
-	String name;
-	String note;
-	Long idOwner;
-	Long idCompanyType;
-	List<Long> stores;
-	List<Long> contracts;
+	private Long idCompany;
+	private String nif;
+	private String name;
+	private String note;
+	private Long idOwner;
+	private Long idCompanyType;
+	private List<Long> stores;
+	private List<Long> contracts;
 }
