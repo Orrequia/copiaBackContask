@@ -43,12 +43,7 @@ public class UserServiceImpl extends AbstractService<User, UserDAO> implements U
 	}
 	
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		UserDetails user = userDAO.findOneByUsername(username).orElseThrow(() -> new UsernameNotFoundException("El usuario o contraseña son incorrectos"));
-		return user;//rg.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getAuthority());
+	public UserDetails loadUserByUsername(String username) {
+		return userDAO.findOneByUsername(username).orElseThrow(() -> new UsernameNotFoundException("El usuario o contraseña son incorrectos"));
 	}
-	
-	/*private List<SimpleGrantedAuthority> getAuthority() {
-		return Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));
-	}*/
 }
