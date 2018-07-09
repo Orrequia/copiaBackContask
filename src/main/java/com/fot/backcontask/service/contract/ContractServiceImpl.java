@@ -1,6 +1,7 @@
 package com.fot.backcontask.service.contract;
 
-import org.apache.commons.codec.binary.StringUtils;
+import org.apache.commons.lang3.BooleanUtils;
+import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.stereotype.Service;
 
 import com.fot.backcontask.dao.ContractDAO;
@@ -18,14 +19,18 @@ public class ContractServiceImpl extends AbstractService<Contract, ContractDAO> 
 
 	@Override
 	public boolean isEqual(Contract c1, Contract c2) {
-		return DateUtils..equals(c1.getStartDate(), c2.getStartDate()) &&
-				StringUtils.equals(cs1, cs2);
+		return DateUtils.isSameInstant(c1.getStartDate(), c2.getStartDate()) &&
+				DateUtils.isSameInstant(c1.getFinishDate(), c2.getFinishDate()) &&
+				BooleanUtils.compare(c1.getPaid(), c2.getPaid()) == 0 &&
+				c1.getContractLine().equals(c2.getContractLine());
 	}
 
 	@Override
 	public void setValues(Contract to, Contract from) {
-		// TODO Auto-generated method stub
-		
+		to.setStartDate(from.getStartDate());
+		to.setFinishDate(from.getFinishDate());
+		to.setPaid(from.getPaid());
+		to.setContractLine(from.getContractLine());
 	}
 
 }
