@@ -28,10 +28,10 @@ public class ContractLine {
 	private Float price;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name=FIELD_IDCONTRACTTYPE)
+	@JoinColumn(name=FIELD_IDCONTRACTTYPE, nullable=false)
 	private ContractType contractType;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name=FIELD_IDKEY)
+	@JoinColumn(name=FIELD_IDKEY, nullable=false)
 	private Key key;
 }
