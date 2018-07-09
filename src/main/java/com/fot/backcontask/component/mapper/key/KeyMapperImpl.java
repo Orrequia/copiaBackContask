@@ -44,5 +44,4 @@ public class KeyMapperImpl extends AbstractMapper<Key, KeyDTO> implements KeyMap
 		keyDTO.setIdKeyType(model.getKeyType().getIdKeyType());
 		return keyDTO;
 	}
-	
 }
