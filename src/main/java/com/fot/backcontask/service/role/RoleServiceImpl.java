@@ -1,5 +1,6 @@
 package com.fot.backcontask.service.role;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import com.fot.backcontask.dao.RoleDAO;
@@ -12,20 +13,18 @@ public class RoleServiceImpl extends AbstractService<Role, RoleDAO> implements R
 
 	@Override
 	public Role getAndCheck(Long id) throws NotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		return findById(id).orElseThrow(() -> new NotFoundException("El role no existe"));
 	}
 
 	@Override
-	public boolean isEqual(Role u1, Role u2) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isEqual(Role r1, Role r2) {
+		return StringUtils.equals(r1.getName(), r2.getName()) &&
+				r1.getPrivilege().equals(r2.getPrivilege());
 	}
 
 	@Override
 	public void setValues(Role to, Role from) {
-		// TODO Auto-generated method stub
-		
+		to.setName(from.getName());
+		to.setPrivilege(from.getPrivilege());
 	}
-
 }

@@ -1,5 +1,6 @@
 package com.fot.backcontask.service.population;
 
+import org.apache.commons.codec.binary.StringUtils;
 import org.springframework.stereotype.Service;
 
 import com.fot.backcontask.dao.PopulationDAO;
@@ -12,20 +13,19 @@ public class PopulationServiceImpl extends AbstractService<Population, Populatio
 
 	@Override
 	public Population getAndCheck(Long id) throws NotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		return findById(id).orElseThrow(() -> new NotFoundException("La población no existe"));
 	}
 
 	@Override
-	public boolean isEqual(Population u1, Population u2) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isEqual(Population p1, Population p2) {
+		return StringUtils.equals(p1.getName(), p2.getName()) &&
+				StringUtils.equals(p1.getPostalCode(), p2.getPostalCode());
 	}
 
 	@Override
 	public void setValues(Population to, Population from) {
-		// TODO Auto-generated method stub
-		
+		to.setName(from.getName());
+		to.setPostalCode(from.getPostalCode());
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.fot.backcontask.service.province;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import com.fot.backcontask.dao.ProvinceDAO;
@@ -12,20 +13,18 @@ public class ProvinceServiceImpl extends AbstractService<Province, ProvinceDAO> 
 
 	@Override
 	public Province getAndCheck(Long id) throws NotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		return findById(id).orElseThrow(() -> new NotFoundException("La provincia no existe"));
 	}
 
 	@Override
-	public boolean isEqual(Province u1, Province u2) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isEqual(Province p1, Province p2) {
+		return StringUtils.equals(p1.getName(), p2.getName()) &&
+				p1.getPopulation().equals(p2.getPopulation());
 	}
 
 	@Override
 	public void setValues(Province to, Province from) {
-		// TODO Auto-generated method stub
-		
+		to.setName(from.getName());
+		to.setPopulation(from.getPopulation());
 	}
-
 }

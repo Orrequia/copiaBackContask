@@ -1,5 +1,6 @@
 package com.fot.backcontask.service.privilege;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import com.fot.backcontask.dao.PrivilegeDAO;
@@ -12,20 +13,16 @@ public class PrivilegeServiceImpl extends AbstractService<Privilege, PrivilegeDA
 
 	@Override
 	public Privilege getAndCheck(Long id) throws NotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		return findById(id).orElseThrow(() -> new NotFoundException("El privilegio no existe"));
 	}
 
 	@Override
-	public boolean isEqual(Privilege u1, Privilege u2) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isEqual(Privilege p1, Privilege p2) {
+		return StringUtils.equals(p1.getName(), p2.getName());	
 	}
 
 	@Override
 	public void setValues(Privilege to, Privilege from) {
-		// TODO Auto-generated method stub
-		
+		to.setName(from.getName());
 	}
-
 }
