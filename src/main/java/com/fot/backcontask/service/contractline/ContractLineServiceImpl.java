@@ -12,20 +12,20 @@ public class ContractLineServiceImpl extends AbstractService<ContractLine, Contr
 
 	@Override
 	public ContractLine getAndCheck(Long id) throws NotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		return findById(id).orElseThrow(() -> new NotFoundException("La línea de contrato no existe"));
 	}
 
 	@Override
-	public boolean isEqual(ContractLine u1, ContractLine u2) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isEqual(ContractLine cl1, ContractLine cl2) {
+		return cl1.getPrice().compareTo(cl2.getPrice()) == 0 &&
+				cl1.getContractType().equals(cl2.getContractType()) &&
+				cl1.getKey().equals(cl2.getKey());
 	}
 
 	@Override
 	public void setValues(ContractLine to, ContractLine from) {
-		// TODO Auto-generated method stub
-		
+		to.setPrice(from.getPrice());
+		to.setContractType(from.getContractType());
+		to.setKey(from.getKey());
 	}
-
 }
