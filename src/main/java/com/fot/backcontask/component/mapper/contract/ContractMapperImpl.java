@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.fot.backcontask.component.mapper.AbstractMapper;
 import com.fot.backcontask.dto.contract.ContractDTO;
@@ -14,6 +15,7 @@ import com.fot.backcontask.model.Contract;
 import com.fot.backcontask.model.ContractLine;
 import com.fot.backcontask.service.contractline.ContractLineService;
 
+@Component
 public class ContractMapperImpl extends AbstractMapper<Contract, ContractDTO> implements ContractMapper {
 
 	@Autowired

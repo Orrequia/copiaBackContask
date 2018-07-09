@@ -1,6 +1,7 @@
 package com.fot.backcontask.component.mapper.key;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.fot.backcontask.component.mapper.AbstractMapper;
 import com.fot.backcontask.dto.key.KeyDTO;
@@ -8,6 +9,7 @@ import com.fot.backcontask.exception.NotFoundException;
 import com.fot.backcontask.model.Key;
 import com.fot.backcontask.service.keytype.KeyTypeService;
 
+@Component
 public class KeyMapperImpl extends AbstractMapper<Key, KeyDTO> implements KeyMapper {
 
 	@Autowired

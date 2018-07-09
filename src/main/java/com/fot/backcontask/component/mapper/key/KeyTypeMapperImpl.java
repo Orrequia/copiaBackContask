@@ -1,9 +1,12 @@
 package com.fot.backcontask.component.mapper.key;
 
+import org.springframework.stereotype.Component;
+
 import com.fot.backcontask.component.mapper.AbstractMapper;
 import com.fot.backcontask.dto.key.KeyTypeDTO;
 import com.fot.backcontask.model.KeyType;
 
+@Component
 public class KeyTypeMapperImpl extends AbstractMapper<KeyType, KeyTypeDTO> implements KeyTypeMapper {
 
 	@Override
