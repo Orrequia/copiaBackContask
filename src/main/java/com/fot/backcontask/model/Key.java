@@ -27,6 +27,6 @@ public class Key {
 	private String license;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name=FIELD_IDKEYTYPE)
+	@JoinColumn(name=FIELD_IDKEYTYPE, nullable=false)
 	private KeyType keyType;
 }
