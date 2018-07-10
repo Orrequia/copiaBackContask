@@ -38,5 +38,5 @@ public class OAuthResourceServerConfig extends ResourceServerConfigurerAdapter {
 	 @Override
 	 public void configure(ResourceServerSecurityConfigurer config) throws Exception {
 		 config.tokenServices(tokenServices());
-	 }
+	 }	 
 }

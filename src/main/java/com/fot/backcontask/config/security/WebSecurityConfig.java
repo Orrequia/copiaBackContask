@@ -44,13 +44,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(final HttpSecurity http) throws Exception {
 		http
-			.anonymous().disable()
+			//.anonymous().disable()
 			//.requestMatchers()
 			//	.antMatchers("/oauth/authorize").and()
 			.authorizeRequests()
 				//.antMatchers("/").permitAll()
 				//.antMatchers("/oauth/authorize").permitAll()//.hasRole("ADMIN")
 				.antMatchers("/user").permitAll()
+				.antMatchers("/").permitAll()
+				.antMatchers("/**").permitAll()
+				.antMatchers("/company").permitAll()
 			//	.anyRequest().authenticated()
 			.and()
 			.csrf().disable()
