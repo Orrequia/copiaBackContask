@@ -36,8 +36,8 @@ public abstract class AbstractController<T, E> {
 		return mapper.modelToDto(models);
 	}
 	
-	@GetMapping("/{idUser}")
-	public E findById(@PathVariable("idUser") Long id) throws NotFoundException {
+	@GetMapping("/{id}")
+	public E findById(@PathVariable("id") Long id) throws NotFoundException {
 		final T model = service.getAndCheck(id);
 		return mapper.modelToDto(model);
 	}
@@ -52,8 +52,8 @@ public abstract class AbstractController<T, E> {
 		return mapper.modelToDto(createUser);
 	}
 	
-	@PutMapping("/{idUser}")
-	public void update(@PathVariable("idUser") Long id, @RequestBody E dto) throws InvalidRequestException, NotFoundException, IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+	@PutMapping("/{id}")
+	public void update(@PathVariable("id") Long id, @RequestBody E dto) throws InvalidRequestException, NotFoundException, IllegalAccessException, InvocationTargetException, NoSuchMethodException {
 		Method method = mapper.dtoClazz().getMethod("getId" + mapper.dtoClazz());
 		if(method.invoke(dto) != null) 
 			throw new InvalidRequestException("El idUser no se puede recibir en el body");
@@ -62,8 +62,8 @@ public abstract class AbstractController<T, E> {
 		service.update(model);
 	}
 	
-	@DeleteMapping("/{idUser}")
-	public void delete(@PathVariable("idUser") Long id, @RequestBody E dto) throws InvalidRequestException, NotFoundException {
+	@DeleteMapping("/{id}")
+	public void delete(@PathVariable("id") Long id, @RequestBody E dto) throws InvalidRequestException, NotFoundException {
 		final T model = service.getAndCheck(id);
 		if(!service.isEqual(mapper.dtoToModel(dto), model)) 
 			throw new InvalidRequestException("El usuario recibido no coincide con el almacenado");
