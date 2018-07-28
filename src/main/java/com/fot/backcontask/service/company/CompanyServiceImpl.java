@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.fot.backcontask.dao.CompanyDAO;
 import com.fot.backcontask.exception.NotFoundException;
 import com.fot.backcontask.model.Company;
+import com.fot.backcontask.model.Contract;
 import com.fot.backcontask.model.Store;
 import com.fot.backcontask.service.AbstractService;
 
@@ -48,6 +49,18 @@ public class CompanyServiceImpl extends AbstractService<Company, CompanyDAO> imp
 	@Override
 	public void removeStore(Company company, Store store) {
 		company.getStore().remove(store);
+		dao.save(company);
+	}
+	
+	@Override
+	public void addContract(Company company, Contract contract) {
+		company.getContract().add(contract);
+		dao.save(company);
+	}
+
+	@Override
+	public void removeContract(Company company, Contract contract) {
+		company.getContract().remove(contract);
 		dao.save(company);
 	}
 }
