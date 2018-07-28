@@ -33,15 +33,15 @@ public class CompanyContractController {
 	@GetMapping
 	public List<ContractDTO> findAll(@RequestParam(defaultValue = "0", required= false ) Integer page, 
 							 @RequestParam(defaultValue = "10", required= false ) Integer size,
-							 @PathVariable("idCompany") Long idCourse) throws NotFoundException {
-		final List<Contract> contracts = contractService.findContractByCompany(idCourse, PageRequest.of(page, size));
+							 @PathVariable("idCompany") Long idCompany) throws NotFoundException {
+		final List<Contract> contracts = contractService.findContractByCompany(idCompany, PageRequest.of(page, size));
 		return contractMapper.modelToDto(contracts);
 	}
 	
 	@GetMapping("/{idContract}")
-	public ContractDTO findById(@PathVariable("idCourse") Long idCourse,
+	public ContractDTO findById(@PathVariable("idCompany") Long idCompany,
 			 @PathVariable("idContract") Long idContract) throws NotFoundException {
-		final Contract contract = contractService.findOneContractByCompany(idCourse, idContract);
+		final Contract contract = contractService.findOneContractByCompany(idCompany, idContract);
 		return contractMapper.modelToDto(contract);
 	}
 	
@@ -66,9 +66,9 @@ public class CompanyContractController {
 	}
 	
 	@DeleteMapping("/{idContract}")
-	public void delete(@PathVariable("idCourse") Long idCourse,
+	public void delete(@PathVariable("idCompany") Long idCompany,
 			@PathVariable("idContract") Long idContract, 
 			@RequestBody ContractDTO dto) throws NotFoundException, InvalidRequestException {
-		contractService.deleteToCompany(idCourse, idContract, contractMapper.dtoToModel(dto));
+		contractService.deleteToCompany(idCompany, idContract, contractMapper.dtoToModel(dto));
 	}
 }
