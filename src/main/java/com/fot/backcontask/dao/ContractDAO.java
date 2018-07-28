@@ -8,7 +8,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.fot.backcontask.model.Contract;
-import com.fot.backcontask.model.Store;
 
 @Repository
 public interface ContractDAO extends GenericDAO<Contract>{
