@@ -63,9 +63,9 @@ public class StoreServiceImpl extends AbstractService<Store, StoreDAO> implement
 	}
 	
 	@Override
-	public List<Store> findStoreByCompany(Long idCourse, Pageable p) throws NotFoundException {
-		companyService.getAndCheck(idCourse);
-		return dao.findByCompany(idCourse, PageRequest.of(p.getPageNumber(), p.getPageSize()));
+	public List<Store> findStoreByCompany(Long idCompany, Pageable p) throws NotFoundException {
+		companyService.getAndCheck(idCompany);
+		return dao.findByCompany(idCompany, PageRequest.of(p.getPageNumber(), p.getPageSize()));
 	}
 	
 	@Override
