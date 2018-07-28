@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5433/contask
     username: postgres
-    password: 
+    password:
   jpa:
     show-sql: true
     hibernate:
