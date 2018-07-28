@@ -15,7 +15,7 @@ public abstract class AbstractService<T, D extends GenericDAO<T>> implements Ser
 	private static final Integer MAXSIZE = Integer.valueOf(10);
 	
 	@Autowired
-	D dao;
+	protected D dao;
 	
 	@Override
 	public T create(T t) {
