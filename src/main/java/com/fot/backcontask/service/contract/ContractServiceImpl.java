@@ -15,6 +15,7 @@ import com.fot.backcontask.exception.InvalidRequestException;
 import com.fot.backcontask.exception.NotFoundException;
 import com.fot.backcontask.model.Company;
 import com.fot.backcontask.model.Contract;
+import com.fot.backcontask.model.ContractLine;
 import com.fot.backcontask.service.AbstractService;
 import com.fot.backcontask.service.company.CompanyService;
 
@@ -86,5 +87,17 @@ public class ContractServiceImpl extends AbstractService<Contract, ContractDAO> 
 		if(!this.isEqual(bodyContract, contract))
 			throw new InvalidRequestException("El contrato recibido no coincide con el almacenado");
 		companyService.removeContract(company, contract);
+	}
+	
+	@Override
+	public void addContractLine(Contract contract, ContractLine contractLine) {
+		contract.getContractLine().add(contractLine);
+		dao.save(contract);
+	}
+	
+	@Override
+	public void removeContractLine(Contract contract, ContractLine contractLine) {
+		contract.getContractLine().remove(contractLine);
+		dao.save(contract);
 	}
 }
