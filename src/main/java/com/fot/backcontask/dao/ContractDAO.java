@@ -14,5 +14,5 @@ import com.fot.backcontask.model.Store;
 public interface ContractDAO extends GenericDAO<Contract>{
 	
 	@Query(value = "SELECT con FROM Contract AS con JOIN Company AS c WHERE c.idCompany = :idCompany ORDEN BY con.finishDate")
-	List<Store> findByCompany(@Param("idCompany") Long idCompany, Pageable pageable);
+	List<Contract> findByCompany(@Param("idCompany") Long idCompany, Pageable pageable);
 }
