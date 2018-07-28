@@ -84,9 +84,10 @@ public class ContractLineServiceImpl extends AbstractService<ContractLine, Contr
 	@Override
 	public void deleteToContract(Long idCompany, Long idContract, Long idContractLine, ContractLine bodyContractLine) throws NotFoundException, InvalidRequestException {
 		final Company company = companyService.getAndCheck(idCompany);
+		final Contract contract = contractService.getAndCheck(idContract);
 		final ContractLine contractLine = this.getAndCheckBelongCompanyAndContract(company, idContract, idContractLine);
 		if(!this.isEqual(bodyContractLine, contractLine))
 			throw new InvalidRequestException("El contrato recibido no coincide con el almacenado");
-		contractService.removeContractLine(company, contractLine);
+		contractService.removeContractLine(contract, contractLine);
 	}
 }
