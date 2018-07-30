@@ -23,7 +23,7 @@ import com.fot.backcontask.service.store.StoreService;
 
 @RestController
 @RequestMapping(value="/company/{idCompany}/store")
-public class CompanyStoreController extends AbstractController<Store, StoreDTO>{
+public class CompanyStoreController {
 	
 	@Autowired
 	StoreService storeService;
