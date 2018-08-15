@@ -1,5 +1,7 @@
 package com.fot.backcontask.service.user;
 
+import java.util.Optional;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,7 +15,7 @@ import com.fot.backcontask.model.User;
 import com.fot.backcontask.service.AbstractService;
 
 @Service(value = "userService")
-public class UserServiceImpl extends AbstractService<User, UserDAO> implements UserService, UserDetailsService {
+public class UserServiceImpl extends AbstractService<User, UserDAO> implements UserService {
 
 	@Autowired
 	UserDAO userDAO;
@@ -43,7 +45,7 @@ public class UserServiceImpl extends AbstractService<User, UserDAO> implements U
 	}
 	
 	@Override
-	public UserDetails loadUserByUsername(String username) {
-		return userDAO.findOneByUsername(username).orElseThrow(() -> new UsernameNotFoundException("El usuario o contraseña son incorrectos"));
+	public Optional<User> findByUsername(String username) {
+		return userDAO.findOneByUsername(username);
 	}
 }
