@@ -1,8 +1,8 @@
-package com.fot.backcontask.service.keytype;
+package com.fot.backcontask.service.dongletype;
 
-import com.fot.backcontask.model.KeyType;
+import com.fot.backcontask.model.DongleType;
 import com.fot.backcontask.service.Service;
 
-public interface KeyTypeService extends Service<KeyType, Long> {
+public interface DongleTypeService extends Service<DongleType, Long> {
 
 }

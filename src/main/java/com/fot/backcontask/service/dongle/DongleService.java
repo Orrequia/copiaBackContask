@@ -1,8 +1,8 @@
-package com.fot.backcontask.service.key;
+package com.fot.backcontask.service.dongle;
 
-import com.fot.backcontask.model.Key;
+import com.fot.backcontask.model.Dongle;
 import com.fot.backcontask.service.Service;
 
-public interface KeyService extends Service<Key, Long> {
+public interface DongleService extends Service<Dongle, Long> {
 
 }

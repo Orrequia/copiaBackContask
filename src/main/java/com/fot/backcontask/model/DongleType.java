@@ -12,7 +12,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class KeyType {
+public class DongleType {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

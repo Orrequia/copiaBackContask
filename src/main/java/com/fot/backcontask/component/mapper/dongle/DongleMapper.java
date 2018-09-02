@@ -1,8 +1,8 @@
-package com.fot.backcontask.component.mapper.key;
+package com.fot.backcontask.component.mapper.dongle;
 
 import com.fot.backcontask.component.mapper.Mapper;
-import com.fot.backcontask.dto.key.KeyDTO;
-import com.fot.backcontask.model.Key;
+import com.fot.backcontask.dto.dongle.DongleDTO;
+import com.fot.backcontask.model.Dongle;
 
-public interface KeyMapper extends Mapper<Key, KeyDTO> {
+public interface DongleMapper extends Mapper<Dongle, DongleDTO> {
 }

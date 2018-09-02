@@ -1,11 +1,11 @@
-package com.fot.backcontask.dto.key;
+package com.fot.backcontask.dto.dongle;
 
 import java.io.Serializable;
 
 import lombok.Data;
 
 @Data
-public class KeyDTO implements Serializable {
+public class DongleDTO implements Serializable {
 
 	private static final long serialVersionUID = 19876987698L;
 	

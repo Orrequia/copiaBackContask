@@ -1,8 +1,13 @@
 package com.fot.backcontask.controller;
 
-import com.fot.backcontask.dto.key.KeyTypeDTO;
-import com.fot.backcontask.model.KeyType;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-public class KeyTypeController extends AbstractController<KeyType, KeyTypeDTO>{
+import com.fot.backcontask.dto.dongle.DongleTypeDTO;
+import com.fot.backcontask.model.DongleType;
+
+@RestController
+@RequestMapping(value="/dongleType")
+public class DongleTypeController extends AbstractController<DongleType, DongleTypeDTO>{
 
 }

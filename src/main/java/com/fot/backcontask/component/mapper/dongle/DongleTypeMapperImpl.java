@@ -1,21 +1,21 @@
-package com.fot.backcontask.component.mapper.key;
+package com.fot.backcontask.component.mapper.dongle;
 
 import org.springframework.stereotype.Component;
 
 import com.fot.backcontask.component.mapper.AbstractMapper;
-import com.fot.backcontask.dto.key.KeyTypeDTO;
-import com.fot.backcontask.model.KeyType;
+import com.fot.backcontask.dto.dongle.DongleTypeDTO;
+import com.fot.backcontask.model.DongleType;
 
 @Component
-public class KeyTypeMapperImpl extends AbstractMapper<KeyType, KeyTypeDTO> implements KeyTypeMapper {
+public class DongleTypeMapperImpl extends AbstractMapper<DongleType, DongleTypeDTO> implements DongleTypeMapper {
 
 	@Override
-	public Class<? extends KeyTypeDTO> dtoClazz() {
-		return KeyTypeDTO.class;
+	public Class<? extends DongleTypeDTO> dtoClazz() {
+		return DongleTypeDTO.class;
 	}
 
 	@Override
-	public Class<? extends KeyType> modelClazz() {
-		return KeyType.class;
+	public Class<? extends DongleType> modelClazz() {
+		return DongleType.class;
 	}
 }

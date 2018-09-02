@@ -1,8 +1,14 @@
 package com.fot.backcontask.controller;
 
-import com.fasterxml.classmate.util.ResolvedTypeCache.Key;
-import com.fot.backcontask.dto.key.KeyDTO;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-public class KeyController extends AbstractController<Key, KeyDTO> {
+
+import com.fot.backcontask.dto.dongle.DongleDTO;
+import com.fot.backcontask.model.Dongle;
+
+@RestController
+@RequestMapping(value="/dongle")
+public class DongleController extends AbstractController<Dongle, DongleDTO> {
 
 }

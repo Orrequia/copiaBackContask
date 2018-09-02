@@ -2,9 +2,9 @@ package com.fot.backcontask.dao;
 
 import org.springframework.stereotype.Repository;
 
-import com.fot.backcontask.model.Key;
+import com.fot.backcontask.model.Dongle;
 
 @Repository
-public interface KeyDAO extends GenericDAO<Key> {
+public interface DongleDAO extends GenericDAO<Dongle> {
 
 }

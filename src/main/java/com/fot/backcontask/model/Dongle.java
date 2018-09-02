@@ -15,7 +15,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Key {
+public class Dongle {
 
 	private static final String FIELD_IDKEYTYPE = "idKeyType";
 	
@@ -28,5 +28,5 @@ public class Key {
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name=FIELD_IDKEYTYPE, nullable=false)
-	private KeyType keyType;
+	private DongleType keyType;
 }
