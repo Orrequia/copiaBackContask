@@ -22,13 +22,9 @@ import org.springframework.web.context.request.RequestContextHolder;
 
 import com.fot.backcontask.dto.user.ConnectedDTO;
 import com.fot.backcontask.exception.InvalidRequestException;
-import com.fot.backcontask.exception.NotFoundException;
-
-import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/api")
-@Slf4j
 public class LoginController {
 
 	private static final Integer LONGTEXTBASIC = 5;
@@ -38,7 +34,7 @@ public class LoginController {
 	private AuthenticationManager authenticationManager;
 	
 	@PostMapping("/login")
-	public ConnectedDTO login(@RequestHeader("Authorization") String auth) throws NotFoundException, UnsupportedEncodingException, InvalidRequestException {
+	public ConnectedDTO login(@RequestHeader("Authorization") String auth) throws UnsupportedEncodingException, InvalidRequestException {
 		
 	    if (auth != null && auth.startsWith("Basic")) {
 	        String credentials = new String(Base64.getDecoder().decode(auth.substring(LONGTEXTBASIC).trim()), "UTF-8");
