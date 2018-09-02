@@ -8,7 +8,7 @@ import com.fot.backcontask.dto.contract.ContractLineDTO;
 import com.fot.backcontask.exception.NotFoundException;
 import com.fot.backcontask.model.ContractLine;
 import com.fot.backcontask.service.contracttype.ContractTypeService;
-import com.fot.backcontask.service.key.KeyService;
+import com.fot.backcontask.service.dongle.DongleService;
 
 @Component
 public class ContractLineMapperImpl extends AbstractMapper<ContractLine, ContractLineDTO> implements ContractLineMapper {
@@ -17,7 +17,7 @@ public class ContractLineMapperImpl extends AbstractMapper<ContractLine, Contrac
 	ContractTypeService contractTypeService;
 	
 	@Autowired
-	KeyService keyService;
+	DongleService keyService;
 	
 	@Override
 	public Class<? extends ContractLineDTO> dtoClazz() {
