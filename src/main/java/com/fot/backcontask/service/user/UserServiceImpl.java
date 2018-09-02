@@ -1,12 +1,7 @@
 package com.fot.backcontask.service.user;
 
-import java.util.Optional;
-
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.fot.backcontask.dao.UserDAO;
@@ -43,9 +38,9 @@ public class UserServiceImpl extends AbstractService<User, UserDAO> implements U
 		to.setPassword(from.getPassword());
 		to.setRole(from.getRole());
 	}
-	
+
 	@Override
-	public Optional<User> findByUsername(String username) {
-		return userDAO.findOneByUsername(username);
+	public User getAndCheckByUsername(String username) throws NotFoundException {
+		return userDAO.findOneByUsername(username).orElseThrow(() -> new NotFoundException("El usuario no existe"));
 	}
 }
