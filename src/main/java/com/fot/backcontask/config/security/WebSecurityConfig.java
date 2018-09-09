@@ -11,9 +11,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.AuthenticationEntryPoint;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -36,12 +33,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	private AuthenticationEntryPoint restAuthenticationEntryPoint;
-
-	@Autowired
-	private AuthenticationFailureHandler restAuthenticationFailureHandler;
-	
-	@Autowired
-	private AuthenticationSuccessHandler restAuthenticationSuccessHandler;
 	  
 	@Autowired
 	private AuthenticationProvider customAuthenticationProvider;
@@ -65,19 +56,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	    	.exceptionHandling()
 	    	.authenticationEntryPoint(restAuthenticationEntryPoint);
 	        
-//	    .and()
-//	    	.formLogin().permitAll()
-//	    	.loginProcessingUrl("/authenticate")
-//	    	.usernameParameter("username").passwordParameter("password")
-//	    	.successHandler(restAuthenticationSuccessHandler)
-//	    	.failureHandler(restAuthenticationFailureHandler)
-//	    .and()
-//	    	.logout()
-//	    	.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll()
-//	    	.logoutSuccessUrl("/");
 		http
 	    	.authorizeRequests()    
-//	    	.antMatchers("/login").permitAll()
 	    	.antMatchers(HttpMethod.POST, "/login").permitAll()
 	    	.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 	    	
