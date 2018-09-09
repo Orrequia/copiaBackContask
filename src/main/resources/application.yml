@@ -6,14 +6,11 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     database-platform: org.hibernate.dialect.PostgreSQL9Dialect
     properties:
       hibernate:
         temp:
           use_jdbc_metadata_defaults: false 
-jwt: 
-  secret: 3st3.35.un.s3cr3t0,m7uy?1m'0rta4nt3Yn0S3pt4e-'7heieifd3c0nTaR4_n4d73p0rjk3-s8n0_3st5Nos3r749ar4n4d2345
-  expiration: 21000
 server:
   port: 8081
