@@ -16,7 +16,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.RequestContextHolder;
 
@@ -24,7 +23,6 @@ import com.fot.backcontask.dto.user.ConnectedDTO;
 import com.fot.backcontask.exception.InvalidRequestException;
 
 @RestController
-@RequestMapping("/api")
 public class LoginController {
 
 	private static final Integer LONGTEXTBASIC = 5;

@@ -63,23 +63,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 	    	.csrf().disable()
 	    	.exceptionHandling()
-	    	.authenticationEntryPoint(restAuthenticationEntryPoint)
+	    	.authenticationEntryPoint(restAuthenticationEntryPoint);
 	        
-	    .and()
-	    	.formLogin().permitAll()
-	    	.loginProcessingUrl("/authenticate")
-	    	.usernameParameter("username").passwordParameter("password")
-	    	.successHandler(restAuthenticationSuccessHandler)
-	    	.failureHandler(restAuthenticationFailureHandler)
-	    .and()
-	    	.logout()
-	    	.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll()
-	    	.deleteCookies("JSESSIONID")
-	    	.logoutSuccessUrl("/");
+//	    .and()
+//	    	.formLogin().permitAll()
+//	    	.loginProcessingUrl("/authenticate")
+//	    	.usernameParameter("username").passwordParameter("password")
+//	    	.successHandler(restAuthenticationSuccessHandler)
+//	    	.failureHandler(restAuthenticationFailureHandler)
+//	    .and()
+//	    	.logout()
+//	    	.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll()
+//	    	.logoutSuccessUrl("/");
 		http
 	    	.authorizeRequests()    
-	    	.antMatchers("/login").permitAll()
-	    	.antMatchers(HttpMethod.POST, "/api/login", "/authenticate").permitAll()
+//	    	.antMatchers("/login").permitAll()
+	    	.antMatchers(HttpMethod.POST, "/login").permitAll()
 	    	.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 	    	
 	    	.antMatchers(HttpMethod.GET, URLCOMPANY).hasAuthority("GET_COMPANY")
