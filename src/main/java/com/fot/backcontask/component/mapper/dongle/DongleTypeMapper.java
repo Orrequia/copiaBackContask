@@ -4,6 +4,6 @@ import com.fot.backcontask.component.mapper.Mapper;
 import com.fot.backcontask.dto.dongle.DongleTypeDTO;
 import com.fot.backcontask.model.DongleType;
 
-public interface DongleTypeMapper extends Mapper<DongleType, DongleTypeDTO> {
+interface DongleTypeMapper extends Mapper<DongleType, DongleTypeDTO> {
 
 }

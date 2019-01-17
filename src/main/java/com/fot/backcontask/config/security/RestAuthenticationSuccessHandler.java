@@ -1,8 +1,5 @@
 package com.fot.backcontask.config.security;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,11 +8,11 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationSu
 import org.springframework.stereotype.Component;
 
 @Component
-public class RestAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
+class RestAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-			Authentication authentication) throws IOException, ServletException {
+			Authentication authentication) {
 		clearAuthenticationAttributes(request);
 	}	
 }

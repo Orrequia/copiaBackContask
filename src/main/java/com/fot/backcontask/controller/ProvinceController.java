@@ -8,6 +8,6 @@ import com.fot.backcontask.model.Province;
 
 @RestController
 @RequestMapping("/province")
-public class ProvinceController extends AbstractController<Province, ProvinceDTO>{
+class ProvinceController extends AbstractController<Province, ProvinceDTO>{
 
 }

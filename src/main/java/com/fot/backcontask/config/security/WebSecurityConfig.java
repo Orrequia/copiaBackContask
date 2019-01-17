@@ -1,5 +1,6 @@
 package com.fot.backcontask.config.security;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +15,7 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 
 @Configuration
 @EnableWebSecurity
+@AllArgsConstructor(onConstructor_={@Autowired})
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	private static final String URLCOMPANY = "/company";
@@ -30,12 +32,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	private static final String URLPRIVILEGE = "/privilege";
 	private static final String URLPROVINCE = "/province";
 	private static final String URLROLE = "/role";
-	
-	@Autowired
-	private AuthenticationEntryPoint restAuthenticationEntryPoint;
-	  
-	@Autowired
-	private AuthenticationProvider customAuthenticationProvider;
+
+	private final AuthenticationEntryPoint restAuthenticationEntryPoint;
+	private final AuthenticationProvider customAuthenticationProvider;
 	  	
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) {

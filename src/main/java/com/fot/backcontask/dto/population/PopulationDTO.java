@@ -12,4 +12,5 @@ public class PopulationDTO implements Serializable {
 	private Long idPopulation;
 	private String name;
 	private String postalCode;
+	private Long idProvince;
 }

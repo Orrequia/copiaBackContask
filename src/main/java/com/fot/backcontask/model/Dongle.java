@@ -17,7 +17,7 @@ import lombok.Setter;
 @Entity
 public class Dongle {
 
-	private static final String FIELD_IDKEYTYPE = "idKeyType";
+	private static final String FIELD_IDDONGLETYPE = "idKeyType";
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -27,6 +27,6 @@ public class Dongle {
 	private String license;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name=FIELD_IDKEYTYPE, nullable=false)
+	@JoinColumn(name=FIELD_IDDONGLETYPE, nullable=false)
 	private DongleType keyType;
 }

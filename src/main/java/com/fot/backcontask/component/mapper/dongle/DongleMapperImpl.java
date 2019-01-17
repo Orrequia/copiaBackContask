@@ -1,5 +1,6 @@
 package com.fot.backcontask.component.mapper.dongle;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -10,10 +11,10 @@ import com.fot.backcontask.model.Dongle;
 import com.fot.backcontask.service.dongletype.DongleTypeService;
 
 @Component
+@AllArgsConstructor(onConstructor_={@Autowired})
 public class DongleMapperImpl extends AbstractMapper<Dongle, DongleDTO> implements DongleMapper {
 
-	@Autowired
-	DongleTypeService keyTypeService;
+	final private DongleTypeService keyTypeService;
 	
 	@Override
 	public Class<? extends DongleDTO> dtoClazz() {

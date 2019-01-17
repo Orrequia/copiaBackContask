@@ -1,5 +1,6 @@
 package com.fot.backcontask.component.mapper.user;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,11 +13,10 @@ import com.fot.backcontask.model.User;
 import com.fot.backcontask.service.role.RoleService;
 
 @Component
+@AllArgsConstructor(onConstructor_={@Autowired})
 public class UserMapperImpl extends AbstractMapper<User, UserDTO> implements UserMapper {
 
-	@Autowired
-	RoleService roleService;
-	
+	private final RoleService roleService;
 	
 	@Override
 	public Class<? extends UserDTO> dtoClazz() {

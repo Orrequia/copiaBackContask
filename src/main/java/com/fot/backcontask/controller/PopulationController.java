@@ -8,6 +8,6 @@ import com.fot.backcontask.model.Population;
 
 @RestController
 @RequestMapping("/population")
-public class PopulationController extends AbstractController<Population, PopulationDTO>{
+class PopulationController extends AbstractController<Population, PopulationDTO>{
 
 }

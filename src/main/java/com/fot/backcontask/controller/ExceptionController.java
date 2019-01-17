@@ -10,7 +10,7 @@ import com.fot.backcontask.exception.InvalidRequestException;
 import com.fot.backcontask.exception.InvalidUserException;
 
 @ControllerAdvice(basePackages= { "com.fot.backcontask.controller" })
-public class ExceptionController {
+class ExceptionController {
 	
 	@ResponseStatus(HttpStatus.UNAUTHORIZED)
 	@ExceptionHandler(InvalidRequestException.class)

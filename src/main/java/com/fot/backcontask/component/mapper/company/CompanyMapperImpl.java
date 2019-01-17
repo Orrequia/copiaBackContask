@@ -22,18 +22,19 @@ import com.fot.backcontask.service.store.StoreService;
 @Component
 public class CompanyMapperImpl extends AbstractMapper<Company, CompanyDTO> implements CompanyMapper {
 
+	private final StoreService storeService;
+	private final ContractService contractService;
+	private final EmployeeService employeeService;
+	private final CompanyTypeService companyTypeService;
+
 	@Autowired
-	StoreService storeService;
-	
-	@Autowired
-	ContractService contractService;
-	
-	@Autowired
-	EmployeeService employeeService;
-	
-	@Autowired
-	CompanyTypeService companyTypeService;
-	
+	public CompanyMapperImpl(StoreService storeService, ContractService contractService, EmployeeService employeeService, CompanyTypeService companyTypeService) {
+		this.storeService = storeService;
+		this.contractService = contractService;
+		this.employeeService = employeeService;
+		this.companyTypeService = companyTypeService;
+	}
+
 	@Override
 	public Class<? extends CompanyDTO> dtoClazz() {
 		return CompanyDTO.class;
@@ -43,7 +44,7 @@ public class CompanyMapperImpl extends AbstractMapper<Company, CompanyDTO> imple
 	public Class<? extends Company> modelClazz() {
 		return Company.class;
 	}
-	
+
 	@Override
 	public Company dtoToModel(CompanyDTO dto) throws NotFoundException {
 		return map(dto, longToStore(dto.getStores()), longToContract(dto.getContracts()));

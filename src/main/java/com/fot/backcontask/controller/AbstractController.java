@@ -21,7 +21,7 @@ import com.fot.backcontask.exception.InvalidRequestException;
 import com.fot.backcontask.exception.NotFoundException;
 import com.fot.backcontask.service.Service;
 
-public abstract class AbstractController<T, E> {
+abstract class AbstractController<T, E> {
 
 	@Autowired
 	Service<T, Long> service;
@@ -43,7 +43,7 @@ public abstract class AbstractController<T, E> {
 	}
 	
 	@PostMapping
-	public E create(HttpServletRequest request, @RequestBody E dto) throws InvalidRequestException, NotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+	public E create(@RequestBody E dto) throws InvalidRequestException, NotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
 		Method method = mapper.dtoClazz().getMethod("getId" + mapper.dtoClazz());
 		if(method.invoke(dto) != null)
 			throw new InvalidRequestException("El id no se puede recibir en el body");

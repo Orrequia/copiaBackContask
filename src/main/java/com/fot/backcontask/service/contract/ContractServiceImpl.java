@@ -1,8 +1,10 @@
 package com.fot.backcontask.service.contract;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
+import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +22,10 @@ import com.fot.backcontask.service.AbstractService;
 import com.fot.backcontask.service.company.CompanyService;
 
 @Service
+@AllArgsConstructor(onConstructor_={@Autowired})
 public class ContractServiceImpl extends AbstractService<Contract, ContractDAO> implements ContractService {
 
-	@Autowired
-	CompanyService companyService;
+	final private CompanyService companyService;
 	
 	@Override
 	public Contract getAndCheck(Long id) throws NotFoundException {
@@ -54,7 +56,7 @@ public class ContractServiceImpl extends AbstractService<Contract, ContractDAO> 
 	
 	private Contract getAndCheckBelongCompany(Company company, Long idContract) throws NotFoundException {
 		final Optional<Contract> contract = company.getContract().stream()
-				.filter(q -> q.getIdContract() == idContract)
+				.filter(q -> Objects.equals(q.getIdContract(), idContract))
 				.findFirst();
 		return contract.orElseThrow(() -> new NotFoundException("Este contrato no existe para esta empresa"));
 	}

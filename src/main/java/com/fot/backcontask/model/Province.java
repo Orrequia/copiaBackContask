@@ -27,8 +27,4 @@ public class Province {
 	
 	@Column(nullable=false)
 	private String name;
-	
-	@OneToMany(fetch=FetchType.LAZY)
-	@JoinColumn(name=FIELD_IDPROVINCE, referencedColumnName=FIELD_IDPROVINCE)
-	private List<Population> population;
 }

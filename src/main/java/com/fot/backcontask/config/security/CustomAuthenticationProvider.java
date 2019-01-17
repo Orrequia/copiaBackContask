@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import lombok.AllArgsConstructor;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +29,10 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
-public class CustomAuthenticationProvider implements AuthenticationProvider {
+@AllArgsConstructor(onConstructor_={@Autowired})
+class CustomAuthenticationProvider implements AuthenticationProvider {
 
-	@Autowired
-	private UserService userService;
+	final private UserService userService;
 
 	@Override
 //	@Transactional
@@ -74,7 +75,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		}
 	}
 
-	final Function<Role, List<SimpleGrantedAuthority>> getGrantedAuthoritiesFromRol = rol -> rol.getPrivilege()
+	private final Function<Role, List<SimpleGrantedAuthority>> getGrantedAuthoritiesFromRol = rol -> rol.getPrivilege()
 			.stream().map(p -> new SimpleGrantedAuthority(p.getName())).collect(Collectors.toList());
 
 	@Override

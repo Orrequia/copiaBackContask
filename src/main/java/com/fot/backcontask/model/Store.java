@@ -29,7 +29,7 @@ public class Store {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idStore;
 	
-	@Column(nullable=true)
+	@Column()
 	private String name;
 	
 	@Column

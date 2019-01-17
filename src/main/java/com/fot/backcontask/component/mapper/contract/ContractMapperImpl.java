@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,10 +17,10 @@ import com.fot.backcontask.model.ContractLine;
 import com.fot.backcontask.service.contractline.ContractLineService;
 
 @Component
+@AllArgsConstructor(onConstructor_={@Autowired})
 public class ContractMapperImpl extends AbstractMapper<Contract, ContractDTO> implements ContractMapper {
 
-	@Autowired
-	ContractLineService contractLineService;
+	final private ContractLineService contractLineService;
 	
 	@Override
 	public Class<? extends ContractDTO> dtoClazz() {
@@ -42,7 +43,7 @@ public class ContractMapperImpl extends AbstractMapper<Contract, ContractDTO> im
 					.filter(Optional::isPresent)
 					.map(Optional::get)
 					.collect(Collectors.toList());
-		if(contractLines.size() != contractLine.size()) throw new NotFoundException("Algunas o todas las lineas de contrato no existen");
+		if(contractLines.size() != contractLine.size()) throw new NotFoundException("Algunas o todas las líneas de contrato no existen");
 		return contractLine;
 		}
 		return new ArrayList<>();

@@ -12,5 +12,4 @@ public class ProvinceDTO implements Serializable {
 
 	private Long idProvince;
 	private String name;
-	private List<Long> populations;
 }

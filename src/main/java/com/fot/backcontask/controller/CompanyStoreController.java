@@ -23,26 +23,29 @@ import com.fot.backcontask.service.store.StoreService;
 
 @RestController
 @RequestMapping(value="/company/{idCompany}/store")
-public class CompanyStoreController {
-	
+class CompanyStoreController {
+
+	private final StoreService storeService;
+	private final StoreMapper storeMapper;
+
 	@Autowired
-	StoreService storeService;
-	
-	@Autowired
-	StoreMapper storeMapper;
-	
+	public CompanyStoreController(StoreService storeService, StoreMapper storeMapper) {
+		this.storeService = storeService;
+		this.storeMapper = storeMapper;
+	}
+
 	@GetMapping
 	public List<StoreDTO> findAll(@RequestParam(defaultValue = "0", required= false ) Integer page, 
 							 @RequestParam(defaultValue = "10", required= false ) Integer size,
-							 @PathVariable("idCompany") Long idCourse) throws NotFoundException {
-		final List<Store> stores = storeService.findStoreByCompany(idCourse, PageRequest.of(page, size));
+							 @PathVariable("idCompany") Long idCompany) throws NotFoundException {
+		final List<Store> stores = storeService.findStoreByCompany(idCompany, PageRequest.of(page, size));
 		return storeMapper.modelToDto(stores);
 	}
 	
 	@GetMapping("/{idStore}")
-	public StoreDTO findById(@PathVariable("idCourse") Long idCourse,
+	public StoreDTO findById(@PathVariable("idCompany") Long idCompany,
 			 @PathVariable("idStore") Long idStore) throws NotFoundException {
-		final Store store = storeService.findOneStoreByCompany(idCourse, idStore);
+		final Store store = storeService.findOneStoreByCompany(idCompany, idStore);
 		return storeMapper.modelToDto(store);
 	}
 	
@@ -67,9 +70,9 @@ public class CompanyStoreController {
 	}
 	
 	@DeleteMapping("/{idStore}")
-	public void delete(@PathVariable("idCourse") Long idCourse,
+	public void delete(@PathVariable("idCompany") Long idCompany,
 			@PathVariable("idStore") Long idStore, 
 			@RequestBody StoreDTO dto) throws NotFoundException, InvalidRequestException {
-		storeService.deleteToCompany(idCourse, idStore, storeMapper.dtoToModel(dto));
+		storeService.deleteToCompany(idCompany, idStore, storeMapper.dtoToModel(dto));
 	}
 }

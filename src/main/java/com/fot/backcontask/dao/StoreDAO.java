@@ -12,6 +12,7 @@ import com.fot.backcontask.model.Store;
 @Repository
 public interface StoreDAO extends GenericDAO<Store> {
 
-	@Query(value = "SELECT s FROM Store AS s JOIN Company AS c WHERE c.idCompany = :idCompany ORDER BY s.name")
+//	@Query(value = "SELECT s FROM Store AS s JOIN Company AS c WHERE c.idCompany = :idCompany ORDER BY s.name")
+	@Query(value = "SELECT s FROM Company AS c JOIN c.store AS s WHERE c.idCompany = :idCompany ORDER BY s.name")
 	List<Store> findByCompany(@Param("idCompany") Long idCompany, Pageable pageable);
 }

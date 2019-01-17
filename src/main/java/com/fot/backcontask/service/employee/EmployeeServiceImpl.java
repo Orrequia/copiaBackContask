@@ -8,6 +8,8 @@ import com.fot.backcontask.exception.NotFoundException;
 import com.fot.backcontask.model.Employee;
 import com.fot.backcontask.service.AbstractService;
 
+import java.util.List;
+
 @Service
 public class EmployeeServiceImpl extends AbstractService<Employee, EmployeeDAO> implements EmployeeService {
 
@@ -28,5 +30,10 @@ public class EmployeeServiceImpl extends AbstractService<Employee, EmployeeDAO> 
 		to.setName(from.getName());
 		to.setEmail(from.getEmail());
 		to.setPhone(from.getPhone());
+	}
+
+	@Override
+	public List<Employee> findByStore(Long store) {
+		return dao.findByStore(store);
 	}
 }

@@ -13,7 +13,7 @@ public class DongleServiceImpl extends AbstractService<Dongle, DongleDAO> implem
 
 	@Override
 	public Dongle getAndCheck(Long id) throws NotFoundException {
-		return findById(id).orElseThrow(() -> new NotFoundException("La mochila no exite"));
+		return findById(id).orElseThrow(() -> new NotFoundException("La mochila no existe"));
 	}
 
 	@Override

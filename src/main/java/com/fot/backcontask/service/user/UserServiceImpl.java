@@ -1,5 +1,7 @@
 package com.fot.backcontask.service.user;
 
+import lombok.AllArgsConstructor;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,10 +12,10 @@ import com.fot.backcontask.model.User;
 import com.fot.backcontask.service.AbstractService;
 
 @Service(value = "userService")
+@AllArgsConstructor(onConstructor_={@Autowired})
 public class UserServiceImpl extends AbstractService<User, UserDAO> implements UserService {
 
-	@Autowired
-	UserDAO userDAO;
+	private final UserDAO userDAO;
 	
 	@Override
 	public User getAndCheck(Long idUser) throws NotFoundException {
@@ -42,5 +44,11 @@ public class UserServiceImpl extends AbstractService<User, UserDAO> implements U
 	@Override
 	public User getAndCheckByUsername(String username) throws NotFoundException {
 		return userDAO.findOneByUsername(username).orElseThrow(() -> new NotFoundException("El usuario no existe"));
+	}
+
+	@Override
+	public User create(User user) {
+		user.setPassword(DigestUtils.sha1Hex(user.getPassword()));
+		return super.create(user);
 	}
 }

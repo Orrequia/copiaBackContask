@@ -23,14 +23,17 @@ import com.fot.backcontask.service.contractline.ContractLineService;
 
 @RestController
 @RequestMapping(value="/company/{idCompany}/contract/{idContract}/contractline")
-public class CompanyContractContractLineController {
+class CompanyContractContractLineController {
+
+	private final ContractLineService contractLineService;
+	private final ContractLineMapper contractLineMapper;
 
 	@Autowired
-	ContractLineService contractLineService;
-	
-	@Autowired
-	ContractLineMapper contractLineMapper;
-	
+	public CompanyContractContractLineController(ContractLineService contractLineService, ContractLineMapper contractLineMapper) {
+		this.contractLineService = contractLineService;
+		this.contractLineMapper = contractLineMapper;
+	}
+
 	@GetMapping
 	public List<ContractLineDTO> findAll(@RequestParam(defaultValue = "0", required= false ) Integer page, 
 							 @RequestParam(defaultValue = "10", required= false ) Integer size,

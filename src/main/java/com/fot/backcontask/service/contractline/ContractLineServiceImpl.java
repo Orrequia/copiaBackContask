@@ -1,7 +1,9 @@
 package com.fot.backcontask.service.contractline;
 
 import java.util.List;
+import java.util.Objects;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -18,13 +20,11 @@ import com.fot.backcontask.service.company.CompanyService;
 import com.fot.backcontask.service.contract.ContractService;
 
 @Service
+@AllArgsConstructor(onConstructor_={@Autowired})
 public class ContractLineServiceImpl extends AbstractService<ContractLine, ContractLineDAO> implements ContractLineService {
-	
-	@Autowired
-	CompanyService companyService;
-	
-	@Autowired
-	ContractService contractService;
+
+	final private CompanyService companyService;
+	final private ContractService contractService;
 	
 	@Override
 	public ContractLine getAndCheck(Long id) throws NotFoundException {
@@ -52,10 +52,10 @@ public class ContractLineServiceImpl extends AbstractService<ContractLine, Contr
 	
 	private ContractLine getAndCheckBelongCompanyAndContract(Company company, Long idContract, Long idContractLine) throws NotFoundException {
 		return company
-				.getContract().stream().filter(q -> q.getIdContract() == idContract)
+				.getContract().stream().filter(q -> Objects.equals(q.getIdContract(), idContract))
 				.findFirst()
 				.orElseThrow(() -> new NotFoundException("Este contrato no existe para esta empresa"))
-				.getContractLine().stream().filter(c -> c.getIdContractLine() == idContractLine)
+				.getContractLine().stream().filter(c -> Objects.equals(c.getIdContractLine(), idContractLine))
 				.findFirst().orElseThrow(() -> new NotFoundException("Esta línea de contrato no existe para este contrato"));
 	}
 

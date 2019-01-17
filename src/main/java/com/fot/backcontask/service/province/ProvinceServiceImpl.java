@@ -18,13 +18,11 @@ public class ProvinceServiceImpl extends AbstractService<Province, ProvinceDAO> 
 
 	@Override
 	public boolean isEqual(Province p1, Province p2) {
-		return StringUtils.equals(p1.getName(), p2.getName()) &&
-				p1.getPopulation().equals(p2.getPopulation());
+		return StringUtils.equals(p1.getName(), p2.getName());
 	}
 
 	@Override
 	public void setValues(Province to, Province from) {
 		to.setName(from.getName());
-		to.setPopulation(from.getPopulation());
 	}
 }

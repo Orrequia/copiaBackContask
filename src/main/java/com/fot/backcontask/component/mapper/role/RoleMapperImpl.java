@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,10 +17,10 @@ import com.fot.backcontask.model.Role;
 import com.fot.backcontask.service.privilege.PrivilegeService;
 
 @Component
+@AllArgsConstructor(onConstructor_={@Autowired})
 public class RoleMapperImpl extends AbstractMapper<Role, RoleDTO> implements RoleMapper {
 
-	@Autowired
-	PrivilegeService privilegeService;
+	final PrivilegeService privilegeService;
 	
 	@Override
 	public Class<? extends RoleDTO> dtoClazz() {

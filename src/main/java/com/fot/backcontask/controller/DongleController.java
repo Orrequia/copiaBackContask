@@ -9,6 +9,6 @@ import com.fot.backcontask.model.Dongle;
 
 @RestController
 @RequestMapping(value="/dongle")
-public class DongleController extends AbstractController<Dongle, DongleDTO> {
+class DongleController extends AbstractController<Dongle, DongleDTO> {
 
 }

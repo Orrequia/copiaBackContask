@@ -15,5 +15,5 @@ public interface ContractLineService extends Service<ContractLine, Long> {
 	List<ContractLine> findContractLineByCompanyAndContract(Long idCompany, Long idContract, Pageable p) throws NotFoundException;
 	ContractLine addToContract(Long idContract, ContractLine contractLine) throws NotFoundException;
 	void updateToContract(Long idCompany, Long idContract, Long idContractLine, ContractLine newContractLine) throws NotFoundException;
-	void deleteToContract(Long idCompany, Long idContract, Long idCOntractLine, ContractLine bodyContractLine) throws NotFoundException, InvalidRequestException;
+	void deleteToContract(Long idCompany, Long idContract, Long idContractLine, ContractLine bodyContractLine) throws NotFoundException, InvalidRequestException;
 }

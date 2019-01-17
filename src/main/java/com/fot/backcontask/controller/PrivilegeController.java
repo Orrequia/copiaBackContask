@@ -8,6 +8,6 @@ import com.fot.backcontask.model.Privilege;
 
 @RestController
 @RequestMapping("/privilege")
-public class PrivilegeController extends AbstractController<Privilege, PrivilegeDTO>{
+class PrivilegeController extends AbstractController<Privilege, PrivilegeDTO>{
 	
 }

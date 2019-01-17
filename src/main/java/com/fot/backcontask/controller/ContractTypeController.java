@@ -8,6 +8,6 @@ import com.fot.backcontask.model.ContractType;
 
 @RestController
 @RequestMapping("/contractType")
-public class ContractTypeController extends AbstractController<ContractType, ContractTypeDTO> {
+class ContractTypeController extends AbstractController<ContractType, ContractTypeDTO> {
 	
 }

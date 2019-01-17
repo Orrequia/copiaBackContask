@@ -29,13 +29,13 @@ public class Company {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idCompany;
 	
-	@Column(unique=true, nullable=true)
+	@Column(unique=true)
 	private String nif;
 	
 	@Column(nullable=false)
 	private String name;
 	
-	@Column(nullable=true)
+	@Column
 	private String note;
 	
 	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)

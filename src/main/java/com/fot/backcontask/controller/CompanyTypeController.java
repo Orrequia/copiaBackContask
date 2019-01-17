@@ -8,6 +8,6 @@ import com.fot.backcontask.model.CompanyType;
 
 @RestController
 @RequestMapping("/companyType")
-public class CompanyTypeController extends AbstractController<CompanyType, CompanyTypeDTO> {
+class CompanyTypeController extends AbstractController<CompanyType, CompanyTypeDTO> {
 
 }

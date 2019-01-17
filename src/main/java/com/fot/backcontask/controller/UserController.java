@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -31,13 +32,11 @@ import io.swagger.annotations.ApiResponses;
 
 @RestController
 @RequestMapping(value= "/user")
-public class UserController {
+@AllArgsConstructor(onConstructor_={@Autowired})
+class UserController {
 
-	@Autowired
-	UserService userService;
-	
-	@Autowired
-	UserMapper userMapper;
+	final private UserService userService;
+	final private UserMapper userMapper;
 	
 	@GetMapping
 	@ApiOperation(notes="Devuelve una lista de usuarios paginado, cada página tendrá un tamaño máximo de 10", tags= { "User" }, value="All user")

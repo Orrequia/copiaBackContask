@@ -1,8 +1,10 @@
 package com.fot.backcontask.service.store;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
+import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -18,10 +20,10 @@ import com.fot.backcontask.service.AbstractService;
 import com.fot.backcontask.service.company.CompanyService;
 
 @Service
+@AllArgsConstructor(onConstructor_={@Autowired})
 public class StoreServiceImpl extends AbstractService<Store, StoreDAO> implements StoreService {
 
-	@Autowired
-	CompanyService companyService;
+	final private CompanyService companyService;
 	
 	@Override
 	public Store getAndCheck(Long id) throws NotFoundException {
@@ -57,7 +59,7 @@ public class StoreServiceImpl extends AbstractService<Store, StoreDAO> implement
 	
 	private Store getAndCheckBelongCompany(Company company, Long idStore) throws NotFoundException {
 		final Optional<Store> store = company.getStore().stream()
-				.filter(q -> q.getIdStore() == idStore)
+				.filter(q -> Objects.equals(q.getIdStore(), idStore))
 				.findFirst();
 		return store.orElseThrow(() -> new NotFoundException("Esta tienda no existe para esta empresa"));
 	}

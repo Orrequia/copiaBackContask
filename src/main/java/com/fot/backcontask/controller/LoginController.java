@@ -5,6 +5,7 @@ import java.util.Base64;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -23,13 +24,13 @@ import com.fot.backcontask.dto.user.ConnectedDTO;
 import com.fot.backcontask.exception.InvalidRequestException;
 
 @RestController
-public class LoginController {
+@AllArgsConstructor(onConstructor_={@Autowired})
+class LoginController {
 
 	private static final Integer LONGTEXTBASIC = 5;
-	
-	@Autowired
+
 	@Qualifier("authenticationManagerBean")
-	private AuthenticationManager authenticationManager;
+	private final AuthenticationManager authenticationManager;
 	
 	@PostMapping("/login")
 	public ConnectedDTO login(@RequestHeader("Authorization") String auth) throws UnsupportedEncodingException, InvalidRequestException {
@@ -61,7 +62,7 @@ public class LoginController {
 		
 		final Boolean isConected = Optional.ofNullable(auth).map(Authentication::getPrincipal).isPresent();
 		final HttpStatus statusConnection = isConected ? HttpStatus.OK : HttpStatus.UNAUTHORIZED;
-		
+
 		return new ResponseEntity<>(statusConnection);
 	}
 }

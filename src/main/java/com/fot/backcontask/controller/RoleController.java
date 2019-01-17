@@ -8,6 +8,6 @@ import com.fot.backcontask.model.Role;
 
 @RestController
 @RequestMapping("/role")
-public class RoleController extends AbstractController<Role, RoleDTO>{
+class RoleController extends AbstractController<Role, RoleDTO>{
 
 }
