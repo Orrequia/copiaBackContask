@@ -10,6 +10,8 @@ import com.fot.backcontask.model.Contract;
 import com.fot.backcontask.model.Store;
 import com.fot.backcontask.service.AbstractService;
 
+import java.util.*;
+
 @Service
 public class CompanyServiceImpl extends AbstractService<Company, CompanyDAO> implements CompanyService {
 
@@ -21,7 +23,7 @@ public class CompanyServiceImpl extends AbstractService<Company, CompanyDAO> imp
 	@Override
 	public boolean isEqual(Company c1, Company c2) {
 		return StringUtils.equals(c1.getName(), c2.getName()) &&
-				StringUtils.equals(c1.getNif(), c2.getNif()) && 
+				StringUtils.equals(c1.getNif(), c2.getNif()) &&
 				StringUtils.equals(c1.getNote(), c2.getNote()) &&
 				c1.getOwner().equals(c2.getOwner()) &&
 				c1.getStore().equals(c2.getStore()) &&
@@ -62,5 +64,19 @@ public class CompanyServiceImpl extends AbstractService<Company, CompanyDAO> imp
 	public void removeContract(Company company, Contract contract) {
 		company.getContract().remove(contract);
 		dao.save(company);
+	}
+
+	@Override
+	public List<Company> freeSearchCompanies(String freeSearch) {
+		freeSearch = freeSearch.toLowerCase();
+		Set<Company> wanted = searchInCompany(freeSearch);
+		wanted.addAll(dao.findByStoreFields(freeSearch, freeSearch, freeSearch));
+		wanted.addAll(dao.findByEmployeeFields(freeSearch, freeSearch));
+		wanted.addAll(dao.findByOwnerFields(freeSearch, freeSearch));
+		return new ArrayList<>(wanted);
+	}
+
+	private Set<Company> searchInCompany(String freeSearch) {
+		return new HashSet<>(dao.findByNameContainingIgnoreCaseOrNifContainingIgnoreCaseOrNoteContainingIgnoreCase(freeSearch, freeSearch, freeSearch));
 	}
 }
