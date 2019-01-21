@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.fot.backcontask.model.Employee;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface EmployeeDAO extends GenericDAO<Employee> {
