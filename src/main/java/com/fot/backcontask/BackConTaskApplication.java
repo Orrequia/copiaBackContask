@@ -1,6 +1,8 @@
 package com.fot.backcontask;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import com.fot.backcontask.dao.*;
@@ -8,7 +10,6 @@ import com.fot.backcontask.model.*;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
@@ -23,7 +24,10 @@ public class BackConTaskApplication {
 	public CommandLineRunner demo(PrivilegeDAO privilegeDAO, RoleDAO roleDAO,
 								  UserDAO userDAO, CompanyDAO companyDAO,
 								  CompanyTypeDAO companyTypeDAO, EmployeeDAO employeeDAO,
-								  StoreDAO storeDAO) {
+								  StoreDAO storeDAO, ContractDAO contractDAO,
+								  PopulationDAO populationDAO, ContractTypeDAO contractTypeDAO,
+								  ProvinceDAO provinceDAO, ContractLineDAO contractLineDAO,
+								  DongleTypeDAO dongleTypeDAO, DongleDAO dongleDAO) {
 		return args -> {
 
 			//Roles
@@ -338,55 +342,230 @@ public class BackConTaskApplication {
 
 			Employee juan = new Employee();
 			juan.setName("Juan Paniagua Pérez");
-			juan.setEmail("juan@gmail.com");
+			juan.setEmail("juan@null.com");
 			juan.setPhone("645783156");
 			employeeDAO.save(juan);
 			empleadosPotasio.add(juan);
 
+
+			//Provinces
+			Province cadiz = new Province();
+			cadiz.setName("Cádiz");
+			provinceDAO.save(cadiz);
+
+			//Population
+			Population chiclana = new Population();
+			chiclana.setName("Chiclana de la Frontera");
+			chiclana.setProvince(cadiz);
+			populationDAO.save(chiclana);
+
+			Population rota = new Population();
+			rota.setName("Rota");
+			rota.setProvince(cadiz);
+			populationDAO.save(rota);
+
+			Population jerez = new Population();
+			jerez.setName("Jerez de la Frontera");
+			jerez.setProvince(cadiz);
+			populationDAO.save(jerez);
+
 			//Stores
-			List<Store> storesMercurio = new ArrayList<>();
-			List<Store> storesVenus = new ArrayList<>();
+			List<Store> storesCyR = new ArrayList<>();
+			List<Store> storesCPB = new ArrayList<>();
 
-			Store potasio = new Store();
-			potasio.setName("CyR Jerez");
-			potasio.setAddress("Calle los Jorobados nº300");
-			potasio.setEmail("jerez@cocinasyreformas.es");
-			potasio.setEmployee(empleadosPotasio);
-			storeDAO.save(potasio);
-			storesMercurio.add(potasio);
+			Store tiendaJerez = new Store();
+			tiendaJerez.setName("CyR Jerez");
+			tiendaJerez.setAddress("Calle los Jorobados nº300");
+			tiendaJerez.setEmail("jerez@cocinasyreformas.es");
+			tiendaJerez.setEmployee(empleadosPotasio);
+			tiendaJerez.setResponsible(juan);
+			tiendaJerez.setPopulation(jerez);
+			storeDAO.save(tiendaJerez);
+			storesCyR.add(tiendaJerez);
 
-			Store sodio = new Store();
-			sodio.setName("CyR Chiclana");
-			sodio.setAddress("Avenida la música Nº3, Bloque 2 BJO C");
-			sodio.setEmail("chiclana@cocinasyreformas.es");
-			sodio.setEmployee(empleadosSodio);
-			storeDAO.save(sodio);
-			storesMercurio.add(sodio);
+			Store tiendaChiclana = new Store();
+			tiendaChiclana.setName("CyR Chiclana");
+			tiendaChiclana.setAddress("Avenida la música Nº3, Bloque 2 BJO C");
+			tiendaChiclana.setEmail("chiclana@cocinasyreformas.es");
+			tiendaChiclana.setEmployee(empleadosSodio);
+			tiendaChiclana.setResponsible(francisco);
+			tiendaChiclana.setPopulation(chiclana);
+			storeDAO.save(tiendaChiclana);
+			storesCyR.add(tiendaChiclana);
 
-			Store dioxidoDeCarbono = new Store();
-			dioxidoDeCarbono.setName("CPB Rota");
-			dioxidoDeCarbono.setAddress("Calle los desemparados Nº20");
-			dioxidoDeCarbono.setEmail("rota@cocinaselpinarbarranca.es");
-			dioxidoDeCarbono.setEmployee(empleadosDioxidoDeCarbono);
-			storeDAO.save(dioxidoDeCarbono);
-			storesVenus.add(dioxidoDeCarbono);
+			Store tiendaRota = new Store();
+			tiendaRota.setName("CPB Rota");
+			tiendaRota.setAddress("Calle los desemparados Nº20");
+			tiendaRota.setEmail("rota@cocinaselpinarbarranca.es");
+			tiendaRota.setEmployee(empleadosDioxidoDeCarbono);
+			tiendaRota.setResponsible(pepe);
+			tiendaRota.setPopulation(rota);
+			storeDAO.save(tiendaRota);
+			storesCPB.add(tiendaRota);
 
 			//Companies
-			Company mercurio = new Company();
-			mercurio.setName("Cocinas y Reformas S.L");
-			mercurio.setNif("M49074001");
-			mercurio.setCompanyType(autonomo);
-			mercurio.setOwner(francisco);
-			mercurio.setStore(storesMercurio);
-			companyDAO.save(mercurio);
+			Company empresaCyR = new Company();
+			empresaCyR.setName("Cocinas y Reformas S.L");
+			empresaCyR.setNif("M49074001");
+			empresaCyR.setCompanyType(autonomo);
+			empresaCyR.setOwner(francisco);
+			empresaCyR.setStore(storesCyR);
+			companyDAO.save(empresaCyR);
 
-			Company venus = new Company();
-			venus.setName("Cocinas el Pinar de la Barranca S.A");
-			venus.setNif("K49074002");
-			venus.setCompanyType(empresa);
-			venus.setOwner(pepe);
-			venus.setStore(storesVenus);
-			companyDAO.save(venus);
+			Company empresaCPB = new Company();
+			empresaCPB.setName("Cocinas el Pinar de la Barranca S.A");
+			empresaCPB.setNif("K49074002");
+			empresaCPB.setCompanyType(empresa);
+			empresaCPB.setOwner(pepe);
+			empresaCPB.setStore(storesCPB);
+			companyDAO.save(empresaCPB);
+
+			//Tipo contratos
+			ContractType asistencia = new ContractType();
+			asistencia.setName("Asistencia");
+			contractTypeDAO.save(asistencia);
+
+			ContractType mantenimiento = new ContractType();
+			mantenimiento.setName("Mantenimiento");
+			contractTypeDAO.save(mantenimiento);
+
+			ContractType mantenimientoConNosotros = new ContractType();
+			mantenimientoConNosotros.setName("Mantenimiento con nosotros");
+			contractTypeDAO.save(mantenimientoConNosotros);
+
+			//Tipo de mochilas
+			DongleType disenio = new DongleType();
+			disenio.setName("Diseño");
+			dongleTypeDAO.save(disenio);
+
+			DongleType fabricacion = new DongleType();
+			fabricacion.setName("Fabricación");
+			dongleTypeDAO.save(fabricacion);
+
+			//Mochilas
+			Dongle mochila1 = new Dongle();
+			mochila1.setDongleType(disenio);
+			mochila1.setLicense("ESTAE-SLALI-CENCI-APARA-LAMOC");
+			dongleDAO.save(mochila1);
+
+			Dongle mochila2 = new Dongle();
+			mochila2.setDongleType(fabricacion);
+			mochila2.setLicense("ESTAE-SLALI-C40CI-3P201-FR4M9");
+			dongleDAO.save(mochila2);
+
+			Dongle mochila3 = new Dongle();
+			mochila3.setDongleType(disenio);
+			mochila3.setLicense("CENCI-5GTR4-LAMOC-HILAN-UMRO3");
+			dongleDAO.save(mochila3);
+
+			Dongle mochila4 = new Dongle();
+			mochila4.setDongleType(fabricacion);
+			mochila4.setLicense("ENCIA-PARAL-AMOCH-ILANU-MERO4");
+			dongleDAO.save(mochila4);
+
+			//LineaContratos
+			ContractLine compramosMochila1 = new ContractLine();
+			compramosMochila1.setContractType(asistencia);
+			compramosMochila1.setDongle(mochila1);
+			compramosMochila1.setPrice(94.4f);
+			contractLineDAO.save(compramosMochila1);
+
+			ContractLine compramosMochila2 = new ContractLine();
+			compramosMochila2.setContractType(mantenimiento);
+			compramosMochila2.setDongle(mochila2);
+			compramosMochila2.setPrice(194.4f);
+			contractLineDAO.save(compramosMochila2);
+
+			ContractLine compramosMochila3 = new ContractLine();
+			compramosMochila3.setContractType(mantenimientoConNosotros);
+			compramosMochila3.setDongle(mochila3);
+			compramosMochila3.setPrice(98.5f);
+			contractLineDAO.save(compramosMochila3);
+
+			ContractLine compramosMochila4 = new ContractLine();
+			compramosMochila4.setContractType(mantenimiento);
+			compramosMochila4.setDongle(mochila4);
+			compramosMochila4.setPrice(263.4f);
+			contractLineDAO.save(compramosMochila4);
+
+			ContractLine compramosMochila1nuevamente = new ContractLine();
+			compramosMochila1nuevamente.setContractType(mantenimiento);
+			compramosMochila1nuevamente.setDongle(mochila1);
+			compramosMochila1nuevamente.setPrice(394.4f);
+			contractLineDAO.save(compramosMochila1nuevamente);
+
+			ContractLine compramosMochila2nuevamente = new ContractLine();
+			compramosMochila2nuevamente.setContractType(asistencia);
+			compramosMochila2nuevamente.setDongle(mochila2);
+			compramosMochila2nuevamente.setPrice(94.7f);
+			contractLineDAO.save(compramosMochila2nuevamente);
+
+			ContractLine compramosMochila3nuevamente = new ContractLine();
+			compramosMochila3nuevamente.setContractType(mantenimientoConNosotros);
+			compramosMochila3nuevamente.setDongle(mochila3);
+			compramosMochila3nuevamente.setPrice(494.4f);
+			contractLineDAO.save(compramosMochila3nuevamente);
+
+			ContractLine compramosMochila4nuevamente = new ContractLine();
+			compramosMochila4nuevamente.setContractType(asistencia);
+			compramosMochila4nuevamente.setDongle(mochila4);
+			compramosMochila4nuevamente.setPrice(91.9f);
+			contractLineDAO.save(compramosMochila4nuevamente);
+
+			List<ContractLine> lineaPrimerContratoParaCyR = new ArrayList<>();
+			lineaPrimerContratoParaCyR.add(compramosMochila2);
+			lineaPrimerContratoParaCyR.add(compramosMochila3);
+
+			List<ContractLine> lineaSegundoContratoParaCyR = new ArrayList<>();
+			lineaSegundoContratoParaCyR.add(compramosMochila2nuevamente);
+			lineaSegundoContratoParaCyR.add(compramosMochila3nuevamente);
+
+			List<ContractLine> lineaPrimerContratoParaCPB = new ArrayList<>();
+			lineaPrimerContratoParaCPB.add(compramosMochila1);
+			lineaPrimerContratoParaCPB.add(compramosMochila4);
+
+			List<ContractLine> lineaSegundoContratoParaCPB = new ArrayList<>();
+			lineaSegundoContratoParaCPB.add(compramosMochila1nuevamente);
+			lineaSegundoContratoParaCPB.add(compramosMochila4nuevamente);
+
+			//Contratos
+			Contract primerContratoConCyR = new Contract();
+			primerContratoConCyR.setStartDate(new Date(1512910825000L));
+			primerContratoConCyR.setPaid(true);
+			primerContratoConCyR.setContractLine(lineaPrimerContratoParaCyR);
+			contractDAO.save(primerContratoConCyR);
+
+			Contract secunContratoConCyR = new Contract();
+			secunContratoConCyR.setStartDate(new Date(1544443225000L));
+			secunContratoConCyR.setPaid(false);
+			secunContratoConCyR.setContractLine(lineaSegundoContratoParaCyR);
+			contractDAO.save(secunContratoConCyR);
+
+			Contract primerContratoConCPB = new Contract();
+			primerContratoConCPB.setStartDate(new Date(1477735225000L));
+			primerContratoConCPB.setPaid(true);
+			primerContratoConCPB.setContractLine(lineaPrimerContratoParaCPB);
+			contractDAO.save(primerContratoConCPB);
+
+			Contract secunContratoConCPB = new Contract();
+			secunContratoConCPB.setStartDate(new Date(1509271225000L));
+			secunContratoConCPB.setPaid(true);
+			secunContratoConCPB.setContractLine(lineaSegundoContratoParaCPB);
+			contractDAO.save(secunContratoConCPB);
+
+
+			tiendaChiclana.setDongle(Collections.singletonList(mochila2));
+			storeDAO.save(tiendaChiclana);
+
+			tiendaJerez.setDongle(Collections.singletonList(mochila3));
+			storeDAO.save(tiendaJerez);
+
+			List<Dongle> listaMochilasCPB = new ArrayList<>();
+			listaMochilasCPB.add(mochila1);
+			listaMochilasCPB.add(mochila4);
+
+			tiendaRota.setDongle(listaMochilasCPB);
+			storeDAO.save(tiendaRota);
 		};
 	}
 }
