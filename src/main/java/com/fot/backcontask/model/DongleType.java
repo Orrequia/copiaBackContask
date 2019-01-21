@@ -16,7 +16,7 @@ public class DongleType {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long idKeyType;
+	private Long idDongleType;
 	
 	@Column(nullable=false, unique=true)
 	private String name;

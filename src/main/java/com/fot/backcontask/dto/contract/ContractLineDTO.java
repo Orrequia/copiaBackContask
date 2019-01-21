@@ -12,5 +12,5 @@ public class ContractLineDTO implements Serializable {
 	private Long idContractLine;
 	private Float price;
 	private Long idContractType;
-	private Long idKey;
+	private Long idDongle;
 }

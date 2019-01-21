@@ -36,7 +36,7 @@ public class ContractLineMapperImpl extends AbstractMapper<ContractLine, Contrac
 	private ContractLine map(ContractLineDTO dto) throws NotFoundException {
 		ContractLine contractLine = dozer.map(dto, modelClazz());
 		if(dto.getIdContractType() != null) contractLine.setContractType(contractTypeService.getAndCheck(dto.getIdContractType()));
-		if(dto.getIdKey() != null) contractLine.setKey(keyService.getAndCheck(dto.getIdKey()));
+		if(dto.getIdDongle() != null) contractLine.setDongle(keyService.getAndCheck(dto.getIdDongle()));
 		return contractLine;
 	}
 
@@ -48,7 +48,7 @@ public class ContractLineMapperImpl extends AbstractMapper<ContractLine, Contrac
 	private ContractLineDTO map(ContractLine model) {
 		ContractLineDTO contractLineDTO = dozer.map(model, dtoClazz());
 		contractLineDTO.setIdContractType(model.getContractType().getIdContractType());
-		contractLineDTO.setIdKey(model.getKey().getIdKey());
+		contractLineDTO.setIdDongle(model.getDongle().getIdDongle());
 		return contractLineDTO;
 	}
 }

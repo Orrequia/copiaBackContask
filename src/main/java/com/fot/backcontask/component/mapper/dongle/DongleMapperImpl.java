@@ -33,7 +33,7 @@ public class DongleMapperImpl extends AbstractMapper<Dongle, DongleDTO> implemen
 	
 	private Dongle map(DongleDTO dto) throws NotFoundException {
 		Dongle key = dozer.map(dto, modelClazz());
-		if(dto.getIdKeyType() != null) key.setKeyType(keyTypeService.getAndCheck(dto.getIdKeyType()));
+		if(dto.getIdDongleType() != null) key.setDongleType(keyTypeService.getAndCheck(dto.getIdDongleType()));
 		return key;
 	}
 
@@ -44,7 +44,7 @@ public class DongleMapperImpl extends AbstractMapper<Dongle, DongleDTO> implemen
 	
 	private DongleDTO map(Dongle model) {
 		DongleDTO keyDTO = dozer.map(model, dtoClazz());
-		keyDTO.setIdKeyType(model.getKeyType().getIdKeyType());
+		keyDTO.setIdDongleType(model.getDongleType().getIdDongleType());
 		return keyDTO;
 	}
 }

@@ -9,7 +9,7 @@ public class DongleDTO implements Serializable {
 
 	private static final long serialVersionUID = 19876987698L;
 	
-	private Long idKey;
+	private Long idDongle;
 	private String license;
-	private Long idKeyType;
+	private Long idDongleType;
 }
