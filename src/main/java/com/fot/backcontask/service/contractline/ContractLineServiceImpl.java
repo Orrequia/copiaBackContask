@@ -35,14 +35,14 @@ public class ContractLineServiceImpl extends AbstractService<ContractLine, Contr
 	public boolean isEqual(ContractLine cl1, ContractLine cl2) {
 		return cl1.getPrice().compareTo(cl2.getPrice()) == 0 &&
 				cl1.getContractType().equals(cl2.getContractType()) &&
-				cl1.getKey().equals(cl2.getKey());
+				cl1.getDongle().equals(cl2.getDongle());
 	}
 
 	@Override
 	public void setValues(ContractLine to, ContractLine from) {
 		to.setPrice(from.getPrice());
 		to.setContractType(from.getContractType());
-		to.setKey(from.getKey());
+		to.setDongle(from.getDongle());
 	}
 	
 	@Override
