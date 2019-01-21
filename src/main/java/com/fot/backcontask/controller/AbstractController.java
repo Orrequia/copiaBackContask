@@ -65,7 +65,7 @@ abstract class AbstractController<T, E> {
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable("id") Long id, @RequestBody E dto) throws InvalidRequestException, NotFoundException {
 		final T model = service.getAndCheck(id);
-		if(!service.isEqual(mapper.dtoToModel(dto), model)) 
+		if(!service.isEqual(mapper.dtoToModel(dto), model))
 			throw new InvalidRequestException("El " + mapper.modelClazz() + " recibido no coincide con el almacenado");
 		service.delete(model);
 	}

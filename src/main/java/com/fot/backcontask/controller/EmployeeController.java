@@ -37,6 +37,7 @@ class EmployeeController {
             models = employeeService.findAll(PageRequest.of(page, size));
         else
             models = employeeService.findByStore(store);
+
         return employeeMapper.modelToDto(models);
     }
 

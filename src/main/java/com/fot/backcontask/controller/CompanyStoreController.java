@@ -39,6 +39,7 @@ class CompanyStoreController {
 							 @RequestParam(defaultValue = "10", required= false ) Integer size,
 							 @PathVariable("idCompany") Long idCompany) throws NotFoundException {
 		final List<Store> stores = storeService.findStoreByCompany(idCompany, PageRequest.of(page, size));
+
 		return storeMapper.modelToDto(stores);
 	}
 	
