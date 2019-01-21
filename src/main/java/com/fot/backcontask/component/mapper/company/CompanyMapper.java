@@ -4,6 +4,6 @@ import com.fot.backcontask.component.mapper.Mapper;
 import com.fot.backcontask.dto.company.CompanyDTO;
 import com.fot.backcontask.model.Company;
 
-interface CompanyMapper extends Mapper<Company, CompanyDTO> {
+public interface CompanyMapper extends Mapper<Company, CompanyDTO> {
 
 }

@@ -34,7 +34,7 @@ public class ContractMapperImpl extends AbstractMapper<Contract, ContractDTO> im
 
 	@Override
 	public Contract dtoToModel(ContractDTO dto) throws NotFoundException {
-		return map(dto, longToContractLine(dto.getContractlines()));
+		return map(dto, longToContractLine(dto.getContractLines()));
 	}
 	
 	private List<ContractLine> longToContractLine(List<Long> contractLines) throws NotFoundException {
@@ -66,7 +66,7 @@ public class ContractMapperImpl extends AbstractMapper<Contract, ContractDTO> im
 	
 	private ContractDTO map(Contract model, List<Long> contractLines) {
 		ContractDTO contractDTO = dozer.map(model, dtoClazz());
-		contractDTO.setContractlines(contractLines);
+		contractDTO.setContractLines(contractLines);
 		return contractDTO;
 	}
 }
