@@ -13,7 +13,6 @@ public class ContractDTO implements Serializable {
 
 	private Long idContract;
 	private Date startDate;
-	private Date finishDate;
 	private Boolean paid;
-	private List<Long> contractlines;
+	private List<Long> contractLines;
 }

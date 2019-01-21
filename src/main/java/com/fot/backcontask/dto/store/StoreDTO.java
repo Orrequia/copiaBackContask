@@ -14,7 +14,9 @@ public class StoreDTO implements Serializable {
 	private String name;
 	private String address;
 	private String email;
+	private String phone;
 	private List<Long> employees;
+	private List<Long> dongles;
 	private Long idResponsible;
 	private Long idPopulation;
 }
