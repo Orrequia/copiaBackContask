@@ -33,5 +33,5 @@ public class ContractLine {
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name=FIELD_IDDONGLE, nullable=false)
-	private Dongle key;
+	private Dongle dongle;
 }
