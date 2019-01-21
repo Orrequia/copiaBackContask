@@ -2,16 +2,7 @@ package com.fot.backcontask.model;
 
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -34,21 +25,28 @@ public class Store {
 	
 	@Column
 	private String address;
-	
+
+	@Column
+	private String phone;
+
 	@Column
 	private String email;
-	
+
 	@ManyToMany(fetch=FetchType.LAZY)
-	@JoinTable(name="store_employee", 
-	joinColumns=@JoinColumn(name=FIELD_IDSTORE, referencedColumnName=FIELD_IDSTORE),
-	inverseJoinColumns=@JoinColumn(name=FIELD_IDEMPLOYEE, referencedColumnName=FIELD_IDEMPLOYEE))
+	@JoinTable(name="store_employee",
+			joinColumns=@JoinColumn(name=FIELD_IDSTORE, referencedColumnName=FIELD_IDSTORE),
+			inverseJoinColumns=@JoinColumn(name=FIELD_IDEMPLOYEE, referencedColumnName=FIELD_IDEMPLOYEE))
 	private List<Employee> employee;
-	
+
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name=FIELD_IDEMPLOYEE)
 	private Employee responsible;
-	
+
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name=FIELD_IDPOPULATION)
 	private Population population;
+
+	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.REMOVE)
+	@JoinColumn(name=FIELD_IDSTORE, referencedColumnName=FIELD_IDSTORE)
+	private List<Dongle> dongle;
 }
