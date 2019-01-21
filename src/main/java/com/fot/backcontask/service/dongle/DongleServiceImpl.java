@@ -19,12 +19,12 @@ public class DongleServiceImpl extends AbstractService<Dongle, DongleDAO> implem
 	@Override
 	public boolean isEqual(Dongle k1, Dongle k2) {
 		return StringUtils.equals(k1.getLicense(), k2.getLicense()) &&
-				k1.getKeyType().equals(k2.getKeyType());
+				k1.getDongleType().equals(k2.getDongleType());
 	}
 
 	@Override
 	public void setValues(Dongle to, Dongle from) {
 		to.setLicense(from.getLicense());
-		to.setKeyType(from.getKeyType());
+		to.setDongleType(from.getDongleType());
 	}
 }
