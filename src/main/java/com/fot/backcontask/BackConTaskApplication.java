@@ -27,7 +27,8 @@ public class BackConTaskApplication {
 								  StoreDAO storeDAO, ContractDAO contractDAO,
 								  PopulationDAO populationDAO, ContractTypeDAO contractTypeDAO,
 								  ProvinceDAO provinceDAO, ContractLineDAO contractLineDAO,
-								  DongleTypeDAO dongleTypeDAO, DongleDAO dongleDAO) {
+								  DongleTypeDAO dongleTypeDAO, DongleDAO dongleDAO,
+								  DongleModuleDAO dongleModuleDAO) {
 		return args -> {
 
 			//Roles
@@ -433,33 +434,60 @@ public class BackConTaskApplication {
 			mantenimientoConNosotros.setName("Mantenimiento con nosotros");
 			contractTypeDAO.save(mantenimientoConNosotros);
 
-			//Tipo de mochilas
-			DongleType disenio = new DongleType();
+			//Modulos de mochilas
+			DongleModule disenio = new DongleModule();
 			disenio.setName("Diseño");
-			dongleTypeDAO.save(disenio);
+			disenio.setReferenceCode(400);
+			dongleModuleDAO.save(disenio);
 
-			DongleType fabricacion = new DongleType();
+			DongleModule fabricacion = new DongleModule();
 			fabricacion.setName("Fabricación");
-			dongleTypeDAO.save(fabricacion);
+			fabricacion.setReferenceCode(501);
+			dongleModuleDAO.save(fabricacion);
+
+			//Tipos de mochilas
+			DongleType prohasp = new DongleType();
+			prohasp.setName("Prohasp");
+			dongleTypeDAO.save(prohasp);
+
+
+			DongleType nethasp = new DongleType();
+			nethasp.setName("Nethasp");
+			dongleTypeDAO.save(nethasp);
+
+
+			DongleType superpro = new DongleType();
+			superpro.setName("Superpro");
+			dongleTypeDAO.save(superpro);
+
+
+			DongleType time = new DongleType();
+			time.setName("Time");
+			dongleTypeDAO.save(time);
+
 
 			//Mochilas
 			Dongle mochila1 = new Dongle();
-			mochila1.setDongleType(disenio);
+			mochila1.setDongleModule(disenio);
+			mochila1.setDongleType(superpro);
 			mochila1.setLicense("ESTAE-SLALI-CENCI-APARA-LAMOC");
 			dongleDAO.save(mochila1);
 
 			Dongle mochila2 = new Dongle();
-			mochila2.setDongleType(fabricacion);
+			mochila2.setDongleModule(fabricacion);
+			mochila2.setDongleType(superpro);
 			mochila2.setLicense("ESTAE-SLALI-C40CI-3P201-FR4M9");
 			dongleDAO.save(mochila2);
 
 			Dongle mochila3 = new Dongle();
-			mochila3.setDongleType(disenio);
+			mochila3.setDongleModule(disenio);
+			mochila3.setDongleType(time);
 			mochila3.setLicense("CENCI-5GTR4-LAMOC-HILAN-UMRO3");
 			dongleDAO.save(mochila3);
 
 			Dongle mochila4 = new Dongle();
-			mochila4.setDongleType(fabricacion);
+			mochila4.setDongleModule(fabricacion);
+			mochila4.setDongleType(prohasp);
 			mochila4.setLicense("ENCIA-PARAL-AMOCH-ILANU-MERO4");
 			dongleDAO.save(mochila4);
 

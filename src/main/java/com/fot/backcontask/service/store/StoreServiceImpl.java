@@ -35,10 +35,16 @@ public class StoreServiceImpl extends AbstractService<Store, StoreDAO> implement
 		return StringUtils.equals(s1.getName(), s2.getName()) &&
 				StringUtils.equals(s1.getEmail(), s2.getEmail()) &&
 				StringUtils.equals(s1.getAddress(), s2.getAddress()) &&
-				s1.getEmployee().equals(s2.getEmployee()) &&
-				s1.getResponsible().equals(s2.getResponsible()) &&
-				s1.getPopulation().equals(s2.getPopulation());
-				
+				s1.getResponsible().getIdEmployee().equals(s2.getResponsible().getIdEmployee()) &&
+				s1.getPopulation().getIdPopulation().equals(s2.getPopulation().getIdPopulation()) &&
+
+				s1.getEmployee().stream().allMatch(employee ->
+						s2.getEmployee().stream().anyMatch(employee2 ->
+								employee.getIdEmployee().equals(employee2.getIdEmployee()))) &&
+				s2.getEmployee().stream().allMatch(employee ->
+						s1.getEmployee().stream().anyMatch(employee2 ->
+								employee.getIdEmployee().equals(employee2.getIdEmployee())));
+
 	}
 
 	@Override
@@ -46,9 +52,9 @@ public class StoreServiceImpl extends AbstractService<Store, StoreDAO> implement
 		to.setName(from.getName());
 		to.setEmail(from.getEmail());
 		to.setAddress(from.getAddress());
-		to.setEmployee(from.getEmployee());
 		to.setResponsible(from.getResponsible());
 		to.setPopulation(from.getPopulation());
+		to.setEmployee(from.getEmployee());
 	}
 	
 	@Override

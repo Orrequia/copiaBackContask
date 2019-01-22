@@ -18,7 +18,7 @@ public class ActiveCatalogServiceImpl extends AbstractService<ActiveCatalog, Act
     @Override
     public boolean isEqual(ActiveCatalog u1, ActiveCatalog u2) {
         return StringUtils.equals(u1.getActivationCode(), u2.getActivationCode()) &&
-                u1.getCatalog().equals(u2.getCatalog());
+                u1.getCatalog().getIdCatalog().equals(u2.getCatalog().getIdCatalog());
     }
 
     @Override

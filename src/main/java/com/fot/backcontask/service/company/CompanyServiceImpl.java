@@ -25,10 +25,19 @@ public class CompanyServiceImpl extends AbstractService<Company, CompanyDAO> imp
 		return StringUtils.equals(c1.getName(), c2.getName()) &&
 				StringUtils.equals(c1.getNif(), c2.getNif()) &&
 				StringUtils.equals(c1.getNote(), c2.getNote()) &&
-				c1.getOwner().equals(c2.getOwner()) &&
-				c1.getStore().equals(c2.getStore()) &&
-				c1.getContract().equals(c2.getContract()) &&
-				c1.getCompanyType().equals(c2.getCompanyType());
+				c1.getOwner().getIdEmployee().equals(c2.getOwner().getIdEmployee()) &&
+
+				c1.getStore().stream().allMatch(store ->
+							c2.getStore().stream().anyMatch(store2 -> store.getIdStore().equals(store2.getIdStore()))) &&
+				c2.getStore().stream().allMatch(store ->
+							c1.getStore().stream().anyMatch(store2 -> store.getIdStore().equals(store2.getIdStore()))) &&
+
+				c1.getContract().stream().allMatch(contract ->
+						c2.getContract().stream().anyMatch(contract2 -> contract.getIdContract().equals(contract2.getIdContract()))) &&
+				c2.getContract().stream().allMatch(contract ->
+						c1.getContract().stream().anyMatch(contract2 -> contract.getIdContract().equals(contract2.getIdContract()))) &&
+
+				c1.getCompanyType().getIdCompanyType().equals(c2.getCompanyType().getIdCompanyType());
 	}
 
 	@Override

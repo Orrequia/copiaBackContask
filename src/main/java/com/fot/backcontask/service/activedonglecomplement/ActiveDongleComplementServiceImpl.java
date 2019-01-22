@@ -18,7 +18,7 @@ public class ActiveDongleComplementServiceImpl
     @Override
     public boolean isEqual(ActiveDongleComplement u1, ActiveDongleComplement u2) {
         return StringUtils.equals(u1.getActivationCode(), u2.getActivationCode()) &&
-                u1.getDongleComplement().equals(u2.getDongleComplement());
+                u1.getDongleComplement().getIdDongleComplement().equals(u2.getDongleComplement().getIdDongleComplement());
     }
 
     @Override

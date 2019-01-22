@@ -17,14 +17,36 @@ public class DongleServiceImpl extends AbstractService<Dongle, DongleDAO> implem
 	}
 
 	@Override
-	public boolean isEqual(Dongle k1, Dongle k2) {
-		return StringUtils.equals(k1.getLicense(), k2.getLicense()) &&
-				k1.getDongleType().equals(k2.getDongleType());
+	public boolean isEqual(Dongle d1, Dongle d2) {
+		return StringUtils.equals(d1.getLicense(), d2.getLicense()) &&
+				d1.getDongleType().getIdDongleType().equals(d2.getDongleType().getIdDongleType()) &&
+				d1.getDongleModule().getIdDongleModule().equals(d2.getDongleModule().getIdDongleModule()) &&
+
+				d1.getActiveDongleComplement().stream().allMatch(activeDongleComplement ->
+						d2.getActiveDongleComplement().stream().anyMatch(activeDongleComplement2 ->
+								activeDongleComplement.getIdActiveDongleComplement()
+										.equals(activeDongleComplement2.getIdActiveDongleComplement()))) &&
+				d2.getActiveDongleComplement().stream().allMatch(activeDongleComplement ->
+						d1.getActiveDongleComplement().stream().anyMatch(activeDongleComplement2 ->
+								activeDongleComplement.getIdActiveDongleComplement()
+										.equals(activeDongleComplement2.getIdActiveDongleComplement()))) &&
+
+				d1.getActiveCatalog().stream().allMatch(activeCatalog ->
+						d2.getActiveCatalog().stream().anyMatch(activeCatalog2 ->
+								activeCatalog.getIdActiveCatalog()
+										.equals(activeCatalog2.getIdActiveCatalog()))) &&
+				d2.getActiveCatalog().stream().allMatch(activeCatalog ->
+						d1.getActiveCatalog().stream().anyMatch(activeCatalog2 ->
+								activeCatalog.getIdActiveCatalog()
+										.equals(activeCatalog2.getIdActiveCatalog())));
 	}
 
 	@Override
 	public void setValues(Dongle to, Dongle from) {
 		to.setLicense(from.getLicense());
 		to.setDongleType(from.getDongleType());
+		to.setDongleModule(from.getDongleModule());
+		to.setActiveDongleComplement(from.getActiveDongleComplement());
+		to.setActiveCatalog(from.getActiveCatalog());
 	}
 }

@@ -18,7 +18,7 @@ public class DongleComplementServiceImpl extends AbstractService<DongleComplemen
     @Override
     public boolean isEqual(DongleComplement u1, DongleComplement u2) {
         return StringUtils.equals(u1.getName(), u2.getName()) &&
-                u1.getActivationCode().equals(u2.getActivationCode());
+                StringUtils.equals(u1.getActivationCode(), u2.getActivationCode());
 
     }
 

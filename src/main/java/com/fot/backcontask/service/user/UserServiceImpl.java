@@ -28,7 +28,7 @@ public class UserServiceImpl extends AbstractService<User, UserDAO> implements U
 				StringUtils.equals(u1.getEmail(), u2.getEmail()) &&
 				StringUtils.equals(u1.getPhone(), u2.getPhone()) &&
 				StringUtils.equals(u1.getUsername(), u2.getUsername()) &&
-				u1.getRole().equals(u2.getRole());
+				u1.getRole().getIdRole().equals(u2.getRole().getIdRole());
 	}
 	
 	@Override

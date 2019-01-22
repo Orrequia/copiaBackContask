@@ -19,7 +19,12 @@ public class RoleServiceImpl extends AbstractService<Role, RoleDAO> implements R
 	@Override
 	public boolean isEqual(Role r1, Role r2) {
 		return StringUtils.equals(r1.getName(), r2.getName()) &&
-				r1.getPrivilege().equals(r2.getPrivilege());
+				r1.getPrivilege().stream().allMatch(privilege ->
+						r2.getPrivilege().stream().anyMatch(privilege2 ->
+								privilege.getIdPrivilege().equals(privilege2.getIdPrivilege()))) &&
+				r2.getPrivilege().stream().allMatch(privilege ->
+						r1.getPrivilege().stream().anyMatch(privilege2 ->
+								privilege.getIdPrivilege().equals(privilege2.getIdPrivilege())));
 	}
 
 	@Override

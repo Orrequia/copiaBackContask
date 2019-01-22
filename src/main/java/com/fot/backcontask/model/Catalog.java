@@ -12,7 +12,7 @@ public class Catalog {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long idContractType;
+    private Long idCatalog;
 
     @Column(nullable=false, unique=true)
     private Integer catalogCode;

@@ -20,7 +20,7 @@ public class PopulationServiceImpl extends AbstractService<Population, Populatio
 	public boolean isEqual(Population p1, Population p2) {
 		return StringUtils.equals(p1.getName(), p2.getName()) &&
 				StringUtils.equals(p1.getPostalCode(), p2.getPostalCode()) &&
-				p1.getProvince().equals(p2.getProvince());
+				p1.getProvince().getIdProvince().equals(p2.getProvince().getIdProvince());
 	}
 
 	@Override

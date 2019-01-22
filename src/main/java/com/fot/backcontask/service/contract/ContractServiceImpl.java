@@ -37,7 +37,13 @@ public class ContractServiceImpl extends AbstractService<Contract, ContractDAO> 
 		return DateUtils.isSameInstant(c1.getStartDate(), c2.getStartDate()) &&
 				DateUtils.isSameInstant(c1.getFinishDate(), c2.getFinishDate()) &&
 				BooleanUtils.compare(c1.getPaid(), c2.getPaid()) == 0 &&
-				c1.getContractLine().equals(c2.getContractLine());
+
+				c1.getContractLine().stream().allMatch(contractLine ->
+						c2.getContractLine().stream().anyMatch(contractLine2 ->
+								contractLine.getIdContractLine().equals(contractLine2.getIdContractLine()))) &&
+				c2.getContractLine().stream().allMatch(store ->
+						c1.getContractLine().stream().anyMatch(contractLine2 ->
+								store.getIdContractLine().equals(contractLine2.getIdContractLine())));
 	}
 
 	@Override
