@@ -5,7 +5,9 @@ import com.fot.backcontask.exception.NotFoundException;
 import com.fot.backcontask.model.ActiveDongleComplement;
 import com.fot.backcontask.service.AbstractService;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ActiveDongleComplementServiceImpl
         extends AbstractService<ActiveDongleComplement, ActiveDongleComplementDAO>
         implements ActiveDongleComplementService {

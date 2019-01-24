@@ -3,7 +3,9 @@ package com.fot.backcontask.component.mapper.dongle;
 import com.fot.backcontask.component.mapper.AbstractMapper;
 import com.fot.backcontask.dto.dongle.DongleModuleDTO;
 import com.fot.backcontask.model.DongleModule;
+import org.springframework.stereotype.Component;
 
+@Component
 public class DongleModuleMapperImpl extends AbstractMapper<DongleModule, DongleModuleDTO> implements DongleModuleMapper {
 
     @Override
