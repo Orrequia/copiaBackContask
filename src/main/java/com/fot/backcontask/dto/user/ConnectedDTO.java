@@ -10,6 +10,5 @@ import lombok.Getter;
 public class ConnectedDTO {
 
 	private String username;
-	private String idSession;
 	private List<String> grantedAuthorities;
 }
