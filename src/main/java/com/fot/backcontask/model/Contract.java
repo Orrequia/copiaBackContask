@@ -32,9 +32,6 @@ public class Contract {
 	@Temporal(TemporalType.DATE)
 	private Date startDate;
 	
-	@Temporal(TemporalType.DATE)
-	private Date finishDate;
-	
 	@Column
 	private Boolean paid;
 	

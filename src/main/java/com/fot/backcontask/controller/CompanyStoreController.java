@@ -1,25 +1,15 @@
 package com.fot.backcontask.controller;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.fot.backcontask.component.mapper.store.StoreMapper;
 import com.fot.backcontask.dto.store.StoreDTO;
 import com.fot.backcontask.exception.InvalidRequestException;
 import com.fot.backcontask.exception.NotFoundException;
 import com.fot.backcontask.model.Store;
 import com.fot.backcontask.service.store.StoreService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value="/company/{idCompany}/store")
@@ -35,10 +25,8 @@ class CompanyStoreController {
 	}
 
 	@GetMapping
-	public List<StoreDTO> findAll(@RequestParam(defaultValue = "0", required= false ) Integer page, 
-							 @RequestParam(defaultValue = "10", required= false ) Integer size,
-							 @PathVariable("idCompany") Long idCompany) throws NotFoundException {
-		final List<Store> stores = storeService.findStoreByCompany(idCompany, PageRequest.of(page, size));
+	public List<StoreDTO> findAll(@PathVariable("idCompany") Long idCompany) throws NotFoundException {
+		final List<Store> stores = storeService.findStoreByCompany(idCompany);
 
 		return storeMapper.modelToDto(stores);
 	}

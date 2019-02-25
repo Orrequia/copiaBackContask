@@ -35,7 +35,6 @@ public class ContractServiceImpl extends AbstractService<Contract, ContractDAO> 
 	@Override
 	public boolean isEqual(Contract c1, Contract c2) {
 		return DateUtils.isSameInstant(c1.getStartDate(), c2.getStartDate()) &&
-				DateUtils.isSameInstant(c1.getFinishDate(), c2.getFinishDate()) &&
 				BooleanUtils.compare(c1.getPaid(), c2.getPaid()) == 0 &&
 
 				c1.getContractLine().stream().allMatch(contractLine ->
@@ -49,7 +48,6 @@ public class ContractServiceImpl extends AbstractService<Contract, ContractDAO> 
 	@Override
 	public void setValues(Contract to, Contract from) {
 		to.setStartDate(from.getStartDate());
-		to.setFinishDate(from.getFinishDate());
 		to.setPaid(from.getPaid());
 		to.setContractLine(from.getContractLine());
 	}

@@ -576,7 +576,7 @@ public class BackConTaskApplication {
 			contractDAO.save(primerContratoConCPB);
 
 			Contract secunContratoConCPB = new Contract();
-			secunContratoConCPB.setStartDate(new Date(1509271225000L));
+			secunContratoConCPB.setStartDate(new Date(1544443225000L));
 			secunContratoConCPB.setPaid(true);
 			secunContratoConCPB.setContractLine(lineaSegundoContratoParaCPB);
 			contractDAO.save(secunContratoConCPB);
@@ -594,6 +594,21 @@ public class BackConTaskApplication {
 
 			tiendaRota.setDongle(listaMochilasCPB);
 			storeDAO.save(tiendaRota);
+
+
+			List<Contract> contracts = new ArrayList<>();
+			contracts.add(primerContratoConCPB);
+			contracts.add(secunContratoConCPB);
+
+			empresaCPB.setContract(contracts);
+			companyDAO.save(empresaCPB);
+
+			List<Contract> contracts2 = new ArrayList<>();
+			contracts2.add(primerContratoConCyR);
+			contracts2.add(secunContratoConCyR);
+
+			empresaCyR.setContract(contracts2);
+			companyDAO.save(empresaCyR);
 		};
 	}
 }

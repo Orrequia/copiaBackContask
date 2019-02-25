@@ -1,16 +1,5 @@
 package com.fot.backcontask.service.store;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-
-import lombok.AllArgsConstructor;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
-
 import com.fot.backcontask.dao.StoreDAO;
 import com.fot.backcontask.exception.InvalidRequestException;
 import com.fot.backcontask.exception.NotFoundException;
@@ -18,6 +7,14 @@ import com.fot.backcontask.model.Company;
 import com.fot.backcontask.model.Store;
 import com.fot.backcontask.service.AbstractService;
 import com.fot.backcontask.service.company.CompanyService;
+import lombok.AllArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor(onConstructor_={@Autowired})
@@ -71,9 +68,9 @@ public class StoreServiceImpl extends AbstractService<Store, StoreDAO> implement
 	}
 	
 	@Override
-	public List<Store> findStoreByCompany(Long idCompany, Pageable p) throws NotFoundException {
+	public List<Store> findStoreByCompany(Long idCompany) throws NotFoundException {
 		companyService.getAndCheck(idCompany);
-		return dao.findByCompany(idCompany, PageRequest.of(p.getPageNumber(), p.getPageSize()));
+		return dao.findByCompany(idCompany);
 	}
 	
 	@Override
